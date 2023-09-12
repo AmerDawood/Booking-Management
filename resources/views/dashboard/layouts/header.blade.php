@@ -36,10 +36,10 @@
                   LOGOUT
                 </button>
                 <ul class="dropdown-menu">
-                    {{-- <form action="{{ route('logout') }}" method="POST">
+                    <form action="{{ route('logout.user') }}" method="POST">
                         @csrf
                             <button class="dropdown-item"><i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i> Logout</button>
-                        </form> --}}
+                        </form>
                 </ul>
               </div>
 

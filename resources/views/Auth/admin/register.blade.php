@@ -1,4 +1,4 @@
-<!doctype html>
+{{-- <!doctype html>
 <html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg" data-sidebar-image="none" data-preloader="disable">
 
 @include('dashboard.layouts.head')
@@ -46,9 +46,17 @@
                                         <p class="text-muted">Sign in to continue to Velzon.</p>
                                     </div>
                                     <div class="p-2 mt-4">
-                                        <form action="{{ route('login.user') }}" method="POST">
+                                        <form action="{{ route('') }}" method="POST">
 
                                             @csrf
+
+                                            <div class="mb-3">
+                                                <label for="username" class="form-label">User Name</label>
+                                                <input type="text" class="form-control  @error('name') is-invalid @enderror" id="email" placeholder="Enter Your Name" name="name" value="{{ old('name') }}">
+                                                @error('name')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
+                                            </div>
                                             <div class="mb-3">
                                                 <label for="username" class="form-label">Email</label>
                                                 <input type="email" class="form-control  @error('email') is-invalid @enderror" id="email" placeholder="Enter Email" name="email" value="{{ old('email') }}">
@@ -56,25 +64,32 @@
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
                                             </div>
-
                                             <div class="mb-3">
-
                                                 <label class="form-label" for="password-input">Password</label>
                                                 <div class="position-relative auth-pass-inputgroup mb-3">
-
                                                     <input type="password" class="form-control pe-5 password-input  @error('password') is-invalid @enderror" placeholder="Enter password" id="password-input" name="password">
 
                                                     @error('password')
                                                     <div class="invalid-feedback">{{ $message }}</div>
-                                                @enderror
-
-                                                    <button class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted shadow-none password-addon" type="button" id="password-addon"><i class="ri-eye-fill align-middle"></i></button>
+                                                    @enderror
                                                 </div>
                                             </div>
 
-                                            
+                                            <div class="mb-3">
+                                                <label class="form-label" for="confirm-password-input">Confirm Password</label>
+                                                <div class="position-relative auth-pass-inputgroup mb-3">
+                                                    <input type="password" class="form-control pe-5 password-input  @error('password_confirmation') is-invalid @enderror" placeholder="Enter Password Confirmation" id="confirm-password-input" name="password_confirmation">
+
+                                                    @error('password_confirmation')
+                                                    <div class="invalid-feedback">{{ $message }}</div>
+                                                    @enderror
+                                                </div>
+                                            </div>
+
+
+
                                             <div class="mt-4">
-                                                <button class="btn btn-success w-100" type="submit">Sign In</button>
+                                                <button class="btn btn-success w-100" type="submit">Sign Up</button>
                                             </div>
 
                                         </form>
@@ -82,36 +97,36 @@
                                 </div>
                                 <!-- end card body -->
                             </div>
-                            <!-- end card -->
 
-                            <div class="mt-4 text-center">
-                                <p class="mb-0">Don't have an account ?<a href="{{ route('register.user') }}" class="fw-semibold text-primary text-decoration-underline"> Signup </a> </p>
-                            </div>
 
                         </div>
                     </div>
                     <!-- end row -->
                 </div>
+        </div>
                 <!-- end container -->
-            </div>
+
+
             <!-- end auth page content -->
 
-            <!-- footer -->
-            <footer class="footer">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="text-center">
-                                <p class="mb-0 text-muted">&copy;
-                                    <script>document.write(new Date().getFullYear())</script> GSG. Crafted with <i class="mdi mdi-heart text-danger"></i> by Amer Dawood
-                                </p>
-                            </div>
+
+
+
+        <!-- footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="text-center">
+                            <p class="mb-0 text-muted">&copy;
+                                <script>document.write(new Date().getFullYear())</script> GSG. Crafted with <i class="mdi mdi-heart text-danger"></i> by Amer Dawood
+                            </p>
                         </div>
                     </div>
                 </div>
-            </footer>
-            <!-- end Footer -->
-        </div>
+            </div>
+        </footer>
+        <!-- end Footer -->
         <!-- end auth-page-wrapper -->
 
 
@@ -120,4 +135,4 @@
      @include('dashboard.layouts.scripts')
 </body>
 
-</html>
+</html> --}}

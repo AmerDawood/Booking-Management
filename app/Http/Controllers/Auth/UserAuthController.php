@@ -9,61 +9,67 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 class UserAuthController extends Controller
 {
-    public function login()
+
+
+    // LOGIN
+    public function showLoginForm()
     {
-        return view('Auth.login');
+        return view('auth.user.login');
+    }
+
+    public function login(Request $request)
+    {
+        $credentials = $request->validate([
+            'email' => 'required|string|email',
+            'password' => 'required|string',
+        ]);
+
+        if (Auth::attempt($credentials)) {
+            $user = Auth::user();
+
+            // if ($user->type === 'admin') {
+                return redirect()->route('dashboard.index')->with('success', 'Logged In Successfully as Admin');
+            // } else {
+                // return redirect()->route('dashboard.index')->with('success', 'Logged In Successfully');
+            // }
+        }
+
+        return redirect()->back()->withErrors(['email' => 'Invalid credentials.']);
     }
 
 
 
+    // Register
 
-public function userLogin(Request $request){
-    $credentials = $request->only('email', 'password');
 
-    if (Auth::attempt($credentials)) {
-        return redirect()->route('user.dashboard');
+    public function showRegistrationForm()
+    {
+        return view('auth.user.register');
     }
 
-    // toastr()->error('Invalid credentials');
+    public function register(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:8|confirmed',
+        ]);
 
-    return redirect()->route('user.login.form');
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+        ]);
 
-}
-
-
-public function userRegister(Request $request){
-
-    $validator = Validator::make($request->all(), [
-        'name' => 'required',
-        'email' => 'required|email|unique:users',
-        'password' => 'required|min:6|confirmed',
-        'type'=>'required',
-    ]);
-
-    if ($validator->fails()) {
-        return redirect()->route('user.register.form')
-            ->withErrors($validator)
-            ->withInput();
+        return redirect()->route('login.user')->with('success', 'Registration successful! You can now log in.');
     }
 
-    $user = User::create([
-        'name' => $request->input('name'),
-        'email' => $request->input('email'),
-        'password' => bcrypt($request->input('password')),
-        'type' => $request->input('type'),
 
-    ]);
+    // LOGOUT
+    public function logout(Request $request)
+    {
+        Auth::logout();
 
-    // toastr()->success('User Registered Successfully');
-
-    return redirect()->route('user.login.form');
-
-}
-
-
-public function logoutUser()
-{
-    Auth::logout();
-    return redirect()->route('user.login.form');
-}
+        return redirect()->route('login.user')->with('success', 'You have been logged out.');
+    }
 }

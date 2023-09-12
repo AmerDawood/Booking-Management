@@ -13,14 +13,13 @@ return new class extends Migration
     {
         Schema::create('spaces', function (Blueprint $table) {
             $table->id();
-            $table->string('name'); // Name or title of the room/space
-            $table->text('description'); // Description of the room/space
-            // $table->decimal('price', 10, 2); // Price or rate for booking
-            $table->integer('capacity'); // Maximum capacity of the room/space
-            $table->string('image_url'); // URL or path to an image representing the room/space
-            $table->json('amenities'); // JSON column for amenities
-            $table->boolean('is_available'); // Boolean flag indicating availability
-            $table->foreignId('place_id')->nullable()->constrained('places','id')->cascadeOnDelete(); 
+            $table->string('name');
+            $table->text('description');
+            $table->integer('capacity');
+            $table->string('image_url');
+            $table->json('amenities');
+            $table->boolean('is_available');
+            $table->foreignId('place_id')->nullable()->constrained('places','id')->cascadeOnDelete();
             $table->timestamps();
         });
     }

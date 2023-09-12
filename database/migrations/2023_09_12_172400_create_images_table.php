@@ -11,20 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('reviews', function (Blueprint $table) {
+        Schema::create('images', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->nullable()->constrained('users','id')->nullOnDelete();
-            $table->foreignId('space_id')->constrained('spaces','id')->cascadeOnDelete();
-            $table->unsignedTinyInteger('rating');
-            $table->text('comment')->nullable();
+            $table->string('path');
+            $table->foreignId('space_id');
             $table->timestamps();
         });
     }
+
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('reviews');
+        Schema::dropIfExists('images');
     }
 };

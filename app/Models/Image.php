@@ -5,14 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Space extends Model
+class Image extends Model
 {
     use HasFactory;
 
-
-
-    public function album()
-    {
-        return $this->hasMany(Image::class);
-    }
+    protected $guarded = [];
 }

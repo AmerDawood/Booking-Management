@@ -58,6 +58,16 @@
                 <li class="menu-title"><i class="ri-more-fill"></i> <span data-key="t-pages">Pages</span></li>
 
 
+{{--
+                @if(auth()->guard('admin')->check() && auth()->guard('admin')->user()->type === 'admin')
+                <p>is admin</p>
+
+                @else
+                <p>is not admin</p>
+
+
+                @endif --}}
+
 
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="#sidebarPages" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarPages">
@@ -68,11 +78,18 @@
 
 
                             <li class="nav-item">
-                                <a href="" class="nav-link" data-key="t-pricing"> All Spaces </a>
+                                <a href="{{ route('spaces.index') }}" class="nav-link" data-key="t-pricing"> All Spaces </a>
                             </li>
+                            @if(auth()->guard('admin')->check())
+
                             <li class="nav-item">
-                                <a href="" class="nav-link" data-key="t-gallery"> Add Spaces </a>
+                                <a href="{{ route('spaces.create') }}" class="nav-link" data-key="t-gallery"> Add Spaces </a>
                             </li>
+                            @else
+
+
+                            @endif
+
 
                         </ul>
                     </div>
@@ -80,20 +97,31 @@
 
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="#sidebarLanding" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarLanding">
-                        <i class="ri-rocket-line"></i> <span data-key="t-landing">Books</span>
+                        <i class="ri-rocket-line"></i> <span data-key="t-landing">Place</span>
                     </a>
                     <div class="collapse menu-dropdown" id="sidebarLanding">
                         <ul class="nav nav-sm flex-column">
+
                             <li class="nav-item">
-                                <a href="" class="nav-link" data-key="t-one-page"> All Books </a>
+                                <a href="{{ route('places.index') }}" class="nav-link" data-key="t-one-page"> All Places </a>
                             </li>
+
+                            @if(auth()->guard('admin')->check())
                             <li class="nav-item">
-                                <a href="" class="nav-link" data-key="t-nft-landing"> Add Books </a>
+                                <a href="{{ route('places.create') }}" class="nav-link" data-key="t-nft-landing"> Add Place </a>
                             </li>
+
+                            @else
+
+                            @endif
+
+
+
 
                         </ul>
                     </div>
                 </li>
+                @if(auth()->guard('admin')->check())
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="#sidebarUI" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarUI">
                         <i class="mdi mdi-cube-outline"></i> <span data-key="t-base-ui">Users </span>
@@ -102,12 +130,17 @@
                         <div class="row">
                             <div class="col-lg-4">
                                 <ul class="nav nav-sm flex-column">
+
+
+
                                     <li class="nav-item">
                                         <a href="" class="nav-link" data-key="t-alerts">All Users</a>
                                     </li>
+
                                     <li class="nav-item">
                                         <a href="" class="nav-link" data-key="t-badges">Add User</a>
                                     </li>
+
 
 
                                 </ul>
@@ -118,32 +151,19 @@
                     </div>
                 </li>
 
-                <li class="menu-title"><i class="ri-more-fill"></i> <span data-key="t-components">Orders</span></li>
+                @else
+
+
+                @endif
 
 
 
 
-                <li class="nav-item">
-
-                    {{-- <a href="#sidebarEcommerce" class="nav-link" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarEcommerce" data-key="t-ecommerce"> Orders
-                    </a> --}}
-                    <a class="nav-link menu-link" href="#sidebarUI" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarUI">
-                        <i class="mdi mdi-cube-outline"></i> <span data-key="t-base-ui">Users </span>
-                    </a>
-                    <div class="collapse menu-dropdown" id="sidebarEcommerce">
-                        <ul class="nav nav-sm flex-column">
-                            <li class="nav-item">
-                                <a href="" class="nav-link" data-key="t-products"> All Orders </a>
-                            </li>
-                            <li class="nav-item">
-                                {{-- <a href="" class="nav-link" data-key="t-product-Details"> Add Settings </a> --}}
-                            </li>
-
-                        </ul>
-                    </div>
-                </li>
 
 
+
+
+                {{-- <li class="menu-title"><i class="ri-more-fill"></i> <span data-key="t-components">Orders</span></li> --}}
 
             </ul>
         </div>

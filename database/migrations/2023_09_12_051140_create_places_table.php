@@ -13,14 +13,14 @@ return new class extends Migration
     {
         Schema::create('places', function (Blueprint $table) {
             $table->id();
-            $table->string('name'); // Name or title of the location
-            $table->string('address'); // Address of the location
-            $table->string('city'); // City where the location is situated
-            $table->string('state'); // State or region where the location is located
-            $table->string('zip_code'); // ZIP code of the location
-            $table->string('country'); // Country where the location is situated
-            $table->decimal('latitude', 10, 7)->nullable(); // Geographic coordinates for mapping (latitude)
-            $table->decimal('longitude', 10, 7)->nullable(); // Geographic coordinates for mapping (longitude)
+            $table->string('name');
+            $table->string('address');
+            $table->string('city');
+            $table->string('state');
+            $table->string('zip_code')->nullable();
+            $table->string('country');
+            $table->decimal('latitude', 10, 7)->nullable();
+            $table->decimal('longitude', 10, 7)->nullable();
             $table->text('description')->nullable();
             $table->timestamps();
         });
