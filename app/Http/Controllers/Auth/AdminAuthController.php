@@ -88,6 +88,6 @@ class AdminAuthController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect()->route('admin.login.form');
+        return redirect()->route('website');
     }
 }

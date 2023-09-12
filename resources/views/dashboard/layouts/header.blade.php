@@ -36,10 +36,28 @@
                   LOGOUT
                 </button>
                 <ul class="dropdown-menu">
+
+                    @if(auth()->guard('web')->check())
                     <form action="{{ route('logout.user') }}" method="POST">
                         @csrf
                             <button class="dropdown-item"><i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i> Logout</button>
                         </form>
+
+
+                        @elseif (auth()->guard('admin')->check())
+
+
+
+                        <form action="{{ route('logout.admin') }}" method="POST">
+                            @csrf
+                                <button class="dropdown-item"><i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i> Logout</button>
+                            </form>
+
+
+                            @else
+
+
+                            @endif 
                 </ul>
               </div>
 

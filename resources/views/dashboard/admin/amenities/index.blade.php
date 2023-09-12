@@ -26,9 +26,8 @@
                                         <tr>
                                             <th scope="col">ID</th>
                                             <th scope="col">Name</th>
-                                            <th scope="col">City Name</th>
+                                            <div class="col">Image</div>
                                             <th scope="col">Created At</th>
-                                            <th scope="col">State</th>
                                             <th scope="col">Actions</th>
 
                                         </tr>
@@ -37,24 +36,31 @@
 
 
 
-                                        @foreach ($places as  $place)
+                                        @foreach ($amenities as  $amenity)
 
                                         <tr>
-                                            <td class="fw-medium">{{ $place->id }}</td>
-                                            <td>{{ $place->name }}</td>
-                                            <td>{{ $place->city }}</td>
-
-                                            <td>{{ $place->created_at }}</td>
-                                            <td><span class="badge badge-soft-success">{{ $place->state }}</span></td>
-
-
+                                            <td class="fw-medium">{{ $amenity->id }}</td>
+                                            <td>{{ $amenity->name }}</td>
 
                                             <td>
-                                                <a href="{{ route('places.edit', $place->id) }}" class="btn btn-primary btn-sm">
+                                                @if($amenity->image_url)
+                                                    <img height="50" width="50" src="{{ asset('uploads/amenities/' . $amenity->image_url) }}" alt="">
+                                                @else
+
+                                                <img height="50" width="50" src="https://placehold.co/400" alt="">
+
+                                                @endif
+                                            </td>
+
+
+                                            <td>{{ $amenity->created_at }}</td>
+
+                                            <td>
+                                                <a href="{{ route('amenities.edit', $amenity->id) }}" class="btn btn-primary btn-sm">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
 
-                                                <form action="{{ route('places.destroy', $place->id) }}" method="POST" style="display: inline-block;">
+                                                <form action="{{ route('amenities.destroy', $amenity->id) }}" method="POST" style="display: inline-block;">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm btn-delete">
@@ -80,3 +86,5 @@
     </div>
 
 @endsection
+
+

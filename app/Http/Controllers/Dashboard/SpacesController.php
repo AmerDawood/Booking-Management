@@ -150,6 +150,6 @@ class SpacesController extends Controller
         $space->delete();
 
 
-        return redirect()->route('spaces.index')->with('success', 'Space and images deleted successfully');
+        return redirect()->route('spaces.index')->with('success', 'Space and image deleted successfully');
     }
 }

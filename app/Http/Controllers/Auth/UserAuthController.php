@@ -70,6 +70,6 @@ class UserAuthController extends Controller
     {
         Auth::logout();
 
-        return redirect()->route('login.user')->with('success', 'You have been logged out.');
+        return redirect()->route('website')->with('success', 'You have been logged out.');
     }
 }

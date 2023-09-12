@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Auth\AdminAuthController;
 use App\Http\Controllers\Auth\UserAuthController;
+use App\Http\Controllers\Dashboard\AmenitiesController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\PlaceController;
 use App\Http\Controllers\Dashboard\SpacesController;
@@ -30,18 +31,19 @@ use Illuminate\Support\Facades\Route;
 
 
 
-// Route::middleware('auth')->group(function(){
-
+Route::middleware(['auth.user_or_admin'])->group(function(){
 
     // Route::middleware('admin')->group(function(){
-
         Route::get('/dashboard' , [DashboardController::class,'index'])->name('dashboard.index');
 
         Route::resource('spaces' , SpacesController::class);
         Route::resource('places' , PlaceController::class);
+        Route::resource('amenities' , AmenitiesController::class);
 
+        Route::get('users',[AdminController::class,'users'])->name('users.all');
+        Route::get('admins',[AdminController::class,'admins'])->name('admins.all');
 
-    // });
+    });
 
 // });
 
