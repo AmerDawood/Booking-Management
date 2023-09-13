@@ -1,18 +1,19 @@
 @extends('dashboard.master')
 
-
-
-
-@section('content')
 @section('styles')
     <!-- dropzone css -->
     <link rel="stylesheet" href="{{ asset('admin/libs/dropzone/dropzone.css') }}" type="text/css" />
 
     <!-- Filepond css -->
-    <link rel="stylesheet" href="{{ asset('admin/libs/filepond/filepond.min.css') }}" type="text/css" />
-    <link rel="stylesheet"
-        href="{{ asset('admin/libs/filepond-plugin-image-preview/filepond-plugin-image-preview.min.css') }}">
+    {{-- <link rel="stylesheet" href="{{ asset('admin/libs/filepond/filepond.min.css') }}" type="text/css" /> --}}
+    {{-- <link rel="stylesheet" --}}
+        {{-- href="{{ asset('admin/libs/filepond-plugin-image-preview/filepond-plugin-image-preview.min.css') }}"> --}}
 @endsection
+
+
+@section('content')
+
+
 <div class="page-content">
     <div class="container-fluid">
 
@@ -45,8 +46,9 @@
                             </div>
 
 
-                            <input type="file" name="image_url" id="">
-                            {{-- <div class="col-lg-12">
+                            {{-- <input type="file" name="image_url" id=""> --}}
+
+                     <div class="col-lg-12">
                                 <div class="card">
                                     <div class="card-header">
                                         <h4 class="card-title mb-0">Image (Optional*)</h4>
@@ -57,7 +59,7 @@
 
                                         <div class="dropzone">
                                             <div class="fallback">
-                                                <input name="image" type="file" multiple="multiple">
+                                                <input name="image_url" type="file" multiple="multiple" id="">
                                             </div>
                                             <div class="dz-message needsclick">
                                                 <div class="mb-3">
@@ -68,7 +70,7 @@
                                             </div>
                                         </div>
 
-                                        <ul class="list-unstyled mb-0" id="dropzone-preview">
+                                        {{-- <ul class="list-unstyled mb-0" id="dropzone-preview">
                                             <li class="mt-2" id="dropzone-preview-list">
                                                 <!-- This is used as the file preview template -->
                                                 <div class="border rounded">
@@ -95,17 +97,18 @@
                                                     </div>
                                                 </div>
                                             </li>
-                                        </ul>
+                                        </ul> --}}
                                         <!-- end dropzon-preview -->
                                     </div>
                                     <!-- end card body -->
                                 </div>
                                 <!-- end card -->
                             </div> <!-- end col -->
-                                --}}
+
                             <div class="text-end">
                                 <button type="submit" class="btn btn-primary">Add Amenity</button>
                             </div>
+
                         </form>
 
                     </div>
@@ -115,17 +118,18 @@
     </div>
 </div>
 
-
-
-
-@endsection
-
-
 @section('scripts')
+{{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/dropzone.min.js"></script> --}}
 <!-- dropzone min -->
-<script src="{{ asset('admin/libs/dropzone/dropzone-min.js') }}"></script>
+ <script src="{{ asset('admin/libs/dropzone/dropzone-min.js') }}"></script>
 
 <script src="{{ asset('admin/js/pages/form-file-upload.init.js') }}"></script>
 
 
 @endsection
+
+
+
+@endsection
+
+

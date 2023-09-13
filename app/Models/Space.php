@@ -10,6 +10,9 @@ class Space extends Model
     use HasFactory;
 
 
+    protected $fillable = ['name','description','capacity','image_url','amenities','is_available','place_id'];
+
+
 
     public function album()
     {

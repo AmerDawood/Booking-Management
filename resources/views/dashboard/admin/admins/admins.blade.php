@@ -25,20 +25,23 @@
                                     <thead>
                                         <tr>
                                             <th scope="col">ID</th>
-                                            <th scope="col">Customer</th>
-                                            <th scope="col">Date</th>
-                                            <th scope="col">Invoice</th>
+                                            <th scope="col">Name</th>
+                                            <th scope="col">Positions</th>
+                                            <th scope="col">Joind At</th>
                                             <th scope="col">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+
+                                        @foreach ($admins as $admin)
                                         <tr>
-                                            <td class="fw-medium">01</td>
-                                            <td>Bobby Davis</td>
-                                            <td>Nov 14, 2021</td>
-                                            <td>$2,410</td>
-                                            <td><span class="badge badge-soft-success">Confirmed</span></td>
+                                            <td class="fw-medium">{{ $admin->id }}</td>
+                                            <td>{{ $admin->name }}</td>
+                                            <td>Positiond Title</td>
+                                            <td>{{ $admin->created_at }}</td>
+                                            <td><span class="badge badge-soft-success"></span></td>
                                         </tr>
+                                        @endforeach
 
                                     </tbody>
 

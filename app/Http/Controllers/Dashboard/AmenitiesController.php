@@ -30,36 +30,25 @@ class AmenitiesController extends Controller
      */
     public function store(Request $request)
     {
+    //   dd($request->all());
 
-
-        $data = $request->validate([
+         $request->validate([
             'name' => 'required|string',
             'description' => 'nullable|string',
-            'image_url' => 'nullable|image|mimes:jpeg,png,jpg,gif', // Add image validation rules.
+            'image_url' => 'nullable|image|mimes:jpeg,png,jpg,gif',
         ]);
 
-        $img_name = null; // Initialize as null by default.
 
-        if ($request->hasFile('image_url')) {
-            $uploadedFile = $request->file('image_url');
-            $extension = $uploadedFile->getClientOriginalExtension();
+        $img_name = rand().time().$request->file('image_url')->getClientOriginalName();
+        $request->file('image_url')->move(public_path('uploads/amenities'), $img_name);
 
-            // Generate a unique filename with the original extension.
-            $img_name = rand() . time() . '.' . $extension;
 
-            // Move the uploaded file to the desired location.
-            $uploadedFile->move(public_path('uploads/amenities'), $img_name);
-        }
 
         Amenity::create([
             'name' => $request->name,
             'description' => $request->description,
             'image_url' => $img_name,
         ]);
-
-
-
-
 
     return redirect()->route('amenities.index')->with('msg', 'Amenity Created Successfully');
 
