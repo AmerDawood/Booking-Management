@@ -12,7 +12,10 @@ class Space extends Model
 
     protected $fillable = ['name','description','capacity','image_url','amenities','is_available','place_id'];
 
-
+    public function amenities()
+    {
+        return $this->belongsToMany(Amenity::class);
+    }
 
     public function album()
     {

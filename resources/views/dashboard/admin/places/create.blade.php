@@ -1,6 +1,15 @@
 @extends('dashboard.master')
 
 
+@section('styles')
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+crossorigin=""/>
+
+@endsection
+
+
 
 
 @section('content')
@@ -72,7 +81,7 @@
                                     @enderror
                                 </div>
 
-                                <div class="mb-3">
+                                {{-- <div class="mb-3">
                                     <label for="latitude" class="form-label">Latitude</label>
                                     <input type="text" class="form-control @error('latitude') is-invalid @enderror" id="latitude"
                                         name="latitude" placeholder="Enter latitude" value="{{ old('latitude') }}">
@@ -88,7 +97,9 @@
                                     @error('longitude')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
-                                </div>
+                                </div> --}}
+
+
 
                                 <div class="mb-3">
                                     <label for="description" class="form-label">Description</label>
@@ -97,6 +108,28 @@
                                     @error('description')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
+                                </div>
+
+
+                                <div class="mapform" >
+                                    <div class="row">
+                                        <div class="col-5">
+                                            <input type="text"  class="form-control @error('lat') is-invalid @enderror"  placeholder="latitude" name="latitude" id="latitude">
+                                            @error('lat')
+                                            <small class="invalid-feedback">{{ $message }}</small>
+                                            @enderror
+                                        </div>
+                                        <div class="col-5">
+                                            <input type="text"  class="form-control @error('long') is-invalid @enderror"  placeholder="longitude" name="longitude" id="longitude">
+                                            @error('long')
+                                            <small class="invalid-feedback">{{ $message }}</small>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+
+                                    <div id="map" style="height:400px; width: 800px; margin-top: 10px" ></div>
+
                                 </div>
 
                                 <div class="text-end">
@@ -110,4 +143,37 @@
             </div>
         </div>
     </div>
+@endsection
+
+
+
+
+@section('scripts')
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+            integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+            crossorigin=""></script>
+    <script>
+        var map = L.map('map').setView([31.4167, 34.3333], 17);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+            maxZoom: 18
+        }).addTo(map);
+
+        // var marker = L.marker([31.4167, 34.3333]).addTo(map);
+
+
+        map.on('click', function(e) {
+            var lat = e.latlng.lat;
+            var lng = e.latlng.lng;
+            var marker = L.marker([lat,lng]).addTo(map);
+
+            document.getElementById("latitude").value = lat;
+            document.getElementById("longitude").value = lng;
+        });
+
+
+    </script>
+
 @endsection

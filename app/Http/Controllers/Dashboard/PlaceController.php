@@ -34,7 +34,6 @@ class PlaceController extends Controller
      */
     public function store(Request $request)
     {
-        // Validate the request data
         $data = $request->validate([
             'name' => 'required|string',
             'address' => 'required|string',

@@ -71,3 +71,9 @@ Route::post('user/logout',[UserAuthController::class,'logout'])->name('logout.us
 Route::get('admin/login',[AdminAuthController::class,'showLoginForm'])->name('login.admin');
 Route::post('admin/login',[AdminAuthController::class,'login'])->name('login.admin');
 Route::post('admin/logout',[AdminAuthController::class,'logout'])->name('logout.admin');
+
+
+
+Route::get('maps' , function(){
+    return view('dashboard.maps');
+});

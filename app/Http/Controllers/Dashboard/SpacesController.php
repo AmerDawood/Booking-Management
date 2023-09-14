@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Models\Amenity;
 use App\Models\Image;
+use App\Models\Place;
 use App\Models\Space;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -23,7 +25,16 @@ class SpacesController extends Controller
      */
     public function create()
     {
-        return view('dashboard.admin.spaces.create');
+
+        $amenities = Amenity::all();
+        $places = Place::all();
+
+        return view('dashboard.admin.spaces.create',
+        [
+            'amenities' => $amenities,
+            'places' => $places,
+        ]
+    );
     }
 
     /**
@@ -32,18 +43,21 @@ class SpacesController extends Controller
     public function store(Request $request)
     {
 
+
+         
+
         $request->validate([
             'name' => 'required|string',
             'description' => 'required|string',
             'capacity' => 'required|integer',
-            'image_url' => 'required|string',
-            'amenities' => 'required|array',
-            'is_available' => 'required|boolean',
+            'image_url' => 'required',
+            'amenities.*' => 'exists:amenities,id',
+            'is_available' => 'required',
             'place_id' => 'required|integer',
         ]);
 
-        $img_name = rand() . time() . $request->file('image')->getClientOriginalExtension();
-        $request->file('image')->move(public_path('uploads/spaces'), $img_name);
+        $img_name = rand() . time() . $request->file('image_url')->getClientOriginalExtension();
+        $request->file('image_url')->move(public_path('uploads/spaces'), $img_name);
 
 
 
@@ -55,11 +69,16 @@ class SpacesController extends Controller
             'description' => $request->description,
             'capacity' => $request->capacity,
             'image_url' => $img_name,
-            'amenities' => $request->amenities,
-            'is_available' => $request->is_available,
+            // 'amenities' => $request->amenities,
+            'is_available' =>$request->has('is_available') ? true : false,
             'place_id' => $request->place_id,
 
         ]);
+
+
+
+        $space->amenities()->sync($request->amenities);
+
 
              // Upload Album to images table if exists
              if($request->has('album')) {

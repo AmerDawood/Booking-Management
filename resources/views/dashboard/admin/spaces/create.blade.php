@@ -8,8 +8,19 @@
 @endsection
 
 @section('content')
+
+
     <div class="page-content">
         <div class="container-fluid">
+            @if($errors->any())
+<div class="alert alert-danger">
+    <ul>
+        @foreach($errors->all() as $error)
+            <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
 
             <div class="col-xxl-12">
                 <div class="card">
@@ -18,59 +29,73 @@
                     </div><!-- end card header -->
                     <div class="card-body">
 
-                        <div class="live-preview">
-                            <form action="">
-                                <div class="mb-3">
-                                    <label for="employeeName" class="form-label">Space Name</label>
-                                    <input type="text" class="form-control" id="employeeName"
-                                        placeholder="Enter emploree name" name="name">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="employeeUrl" class="form-label">Space Description</label>
-                                    <input type="url" class="form-control" id="description"
-                                        placeholder="Enter space description" name="description">
-                                </div>
+                        <form action="{{ route('spaces.store') }}" method="POST" enctype="multipart/form-data">
 
-                                <div class="mb-3">
-                                    <label for="StartleaveDate" class="form-label">Capacity</label>
-                                    <input type="date" class="form-control" data-provider="flatpickr"
-                                        id="StartleaveDate" name="capacity"    placeholder="Enter capacity for the space">
-                                </div>
+                            @csrf
+                            <div class="live-preview">
+                                <form action="">
+                                    <div class="mb-3">
+                                        <label for="employeeName" class="form-label">Space Name</label>
+                                        <input type="text" class="form-control" id="employeeName"
+                                            placeholder="Enter emploree name" name="name">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="employeeUrl" class="form-label">Space Description</label>
+                                        <input type="text" class="form-control" id="description"
+                                            placeholder="Enter space description" name="description">
+                                    </div>
 
+                                    <div class="mb-3">
+                                        <label for="StartleaveDate" class="form-label">Capacity</label>
+                                        <input type="number" class="form-control" data-provider="flatpickr"
+                                            id="StartleaveDate" name="capacity" placeholder="Enter capacity for the space" step="1">
+                                    </div>
 
-
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <div class="card">
-                                            <div class="card-header">
-                                                <h5 class="card-title mb-0">Select2 Control</h5>
-                                            </div>
-                                            <div class="card-body">
-                                                <p class="text-muted">Select2 will respond to the disabled attribute on <code>&lt;select&gt;</code> elements. You can also initialize Select2 with disabled: true to get the same effect.</p>
-                                                <div class="vstack gap-3">
-
-                                                    <select class="js-example-disabled-multi" name="states[]" multiple="multiple">
-                                                        <optgroup label="UK">
-                                                            <option value="London">London</option>
-                                                            <option value="Manchester" selected>Manchester</option>
-                                                            <option value="Liverpool">Liverpool</option>
-                                                        </optgroup>
-                                                      
-                                                    </select>
-                                                </div>
-
-                                            </div>
+                                    <div class="mb-3">
+                                        <label for="image_url" class="form-label">Select Image</label>
+                                        <div class="input-group">
+                                            <input type="file" class="form-control" id="image_url" name="image_url">
+                                            <label class="input-group-text" for="image_url">Upload</label>
                                         </div>
-                                    </div><!--end col-->
-                                </div><!--end row-->
+                                    </div>
+
+                                    <div class="form-check form-switch form-switch-lg" dir="ltr">
+                                        <input type="checkbox" class="form-check-input" id="customSwitchsizelg" name="is_available">
+                                        <label class="form-check-label" for="customSwitchsizelg">Is Available</label>
+                                    </div>
 
 
 
-                                <div class="text-end">
-                                    <button type="submit" class="btn btn-primary">Add Space</button>
-                                </div>
-                            </form>
-                        </div>
+                                    @foreach ($amenities as $item)
+                                    <div class="form-check">
+                                        <input class="form-check-input" name="amenities[]" type="checkbox" value="{{ $item->id }}" id="amenity{{ $item->id }}">
+                                        <label class="form-check-label" for="amenity{{ $item->id }}">
+                                            {{ $item->name }}
+                                        </label>
+                                    </div>
+                                    @endforeach
+                                    {{-- <input type="hidden" name="amenities[]" value=""> --}}
+
+
+
+
+                                      <select class="form-select" name="place_id" aria-label="Default select example">
+
+                                        @foreach ($places  as $item)
+                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                        @endforeach
+                                      </select>
+
+
+
+                                    <div class="text-end">
+                                        <button type="submit" class="btn btn-primary">Add Space</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </form>
+
+
                     </div>
                 </div>
             </div>

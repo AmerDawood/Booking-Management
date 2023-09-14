@@ -10,4 +10,11 @@ class Amenity extends Model
     use HasFactory;
 
     protected $fillable = ['name','description','image_url'];
+
+
+
+    public function spaces()
+    {
+        return $this->belongsToMany(Space::class);
+    }
 }
