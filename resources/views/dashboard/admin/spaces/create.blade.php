@@ -60,21 +60,20 @@
                                     </div>
 
                                     <div class="form-check form-switch form-switch-lg" dir="ltr">
-                                        <input type="checkbox" class="form-check-input" id="customSwitchsizelg" name="is_available">
+                                        <input type="hidden" name="is_available" value="0"> <!-- Hidden input for unchecked value -->
+                                        <input type="checkbox" class="form-check-input" id="customSwitchsizelg" name="is_available" value="1">
                                         <label class="form-check-label" for="customSwitchsizelg">Is Available</label>
                                     </div>
 
 
 
-                                    @foreach ($amenities as $item)
-                                    <div class="form-check">
-                                        <input class="form-check-input" name="amenities[]" type="checkbox" value="{{ $item->id }}" id="amenity{{ $item->id }}">
-                                        <label class="form-check-label" for="amenity{{ $item->id }}">
-                                            {{ $item->name }}
-                                        </label>
-                                    </div>
-                                    @endforeach
-                                    {{-- <input type="hidden" name="amenities[]" value=""> --}}
+
+                                    {{-- @foreach ($amenities as $item)
+                                    <input class="form-check-input" name="amenities[]" type="checkbox" value="{{ $item->id }}" id="amenity{{ $item->id }}">
+                                    <label class="form-check-label" for="amenity{{ $item->id }}">
+                                        {{ $item->name }}
+                                    </label>
+                                    @endforeach --}}
 
 
 

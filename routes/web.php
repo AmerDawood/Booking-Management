@@ -7,6 +7,7 @@ use App\Http\Controllers\Dashboard\AmenitiesController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\PlaceController;
 use App\Http\Controllers\Dashboard\SpacesController;
+use App\Http\Controllers\Dashboard\UserController;
 use App\Http\Controllers\Website\WebsiteController;
 
 use Illuminate\Support\Facades\Route;
@@ -32,9 +33,13 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::middleware(['auth.user_or_admin'])->group(function(){
-
     // Route::middleware('admin')->group(function(){
         Route::get('/dashboard' , [DashboardController::class,'index'])->name('dashboard.index');
+
+    });
+
+
+    Route::middleware('admin')->group(function(){
 
         Route::resource('spaces' , SpacesController::class);
         Route::resource('places' , PlaceController::class);
@@ -42,6 +47,14 @@ Route::middleware(['auth.user_or_admin'])->group(function(){
 
         Route::get('users',[AdminController::class,'users'])->name('users.all');
         Route::get('admins',[AdminController::class,'admins'])->name('admins.all');
+
+
+    });
+
+
+    Route::middleware('auth')->group(function(){
+
+        Route::get('available/spaces', [UserController::class ,'index'])->name('available.spaces');
 
     });
 

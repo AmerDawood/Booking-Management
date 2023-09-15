@@ -17,7 +17,10 @@ class SpacesController extends Controller
      */
     public function index()
     {
-        return view('dashboard.admin.spaces.index');
+        $spaces = Space::orderByDesc('id')->get();
+        return view('dashboard.admin.spaces.index',[
+            'spaces' => $spaces,
+        ]);
     }
 
     /**
@@ -29,12 +32,13 @@ class SpacesController extends Controller
         $amenities = Amenity::all();
         $places = Place::all();
 
-        return view('dashboard.admin.spaces.create',
-        [
-            'amenities' => $amenities,
-            'places' => $places,
-        ]
-    );
+        return view(
+            'dashboard.admin.spaces.create',
+            [
+                'amenities' => $amenities,
+                'places' => $places,
+            ]
+        );
     }
 
     /**
@@ -43,54 +47,52 @@ class SpacesController extends Controller
     public function store(Request $request)
     {
 
+        // dd($request->all());
 
-         
 
         $request->validate([
             'name' => 'required|string',
             'description' => 'required|string',
             'capacity' => 'required|integer',
             'image_url' => 'required',
-            'amenities.*' => 'exists:amenities,id',
-            'is_available' => 'required',
+            'is_available' => 'required|boolean',
             'place_id' => 'required|integer',
         ]);
+
 
         $img_name = rand() . time() . $request->file('image_url')->getClientOriginalExtension();
         $request->file('image_url')->move(public_path('uploads/spaces'), $img_name);
 
 
+        $isAvailable = $request->has('is_available') ? true : false;
 
 
-
-
-      $space =  Space::create([
+        $space =  Space::create([
             'name' => $request->name,
             'description' => $request->description,
             'capacity' => $request->capacity,
             'image_url' => $img_name,
-            // 'amenities' => $request->amenities,
-            'is_available' =>$request->has('is_available') ? true : false,
+            'is_available' => $request->input('is_available', false), // Ensure a boolean value
             'place_id' => $request->place_id,
-
         ]);
 
 
 
-        $space->amenities()->sync($request->amenities);
 
 
-             // Upload Album to images table if exists
-             if($request->has('album')) {
-                foreach($request->album as $item) {
-                    $img_name = rand().time().$item->getClientOriginalName();
-                    $item->move(public_path('uploads/spaces'), $img_name);
-                    Image::create([
-                        'path' => $img_name,
-                        'space_id' => $space->id
-                    ]);
-                }
+
+        // Upload Album to images table if exists
+        if ($request->has('album')) {
+            foreach ($request->album as $item) {
+                $img_name = rand() . time() . $item->getClientOriginalName();
+                $item->move(public_path('uploads/spaces'), $img_name);
+                Image::create([
+                    'path' => $img_name,
+                    'space_id' => $space->id
+                ]);
             }
+        }
+
 
         return redirect()->route('spaces.index')->with('msg', 'Space Created Successfully');
     }
@@ -162,7 +164,7 @@ class SpacesController extends Controller
     {
         $space = Space::findOrFail($id);
 
-        File::delete(public_path('uploads/spaces/'.$space->image));
+        File::delete(public_path('uploads/spaces/' . $space->image));
 
         $space->album()->delete();
 

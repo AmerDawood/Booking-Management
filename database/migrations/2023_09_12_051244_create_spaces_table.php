@@ -17,7 +17,7 @@ return new class extends Migration
             $table->text('description');
             $table->integer('capacity');
             $table->string('image_url');
-            $table->json('amenities');
+            // $table->json('amenities');
             $table->boolean('is_available');
             $table->foreignId('place_id')->nullable()->constrained('places','id')->cascadeOnDelete();
             $table->timestamps();

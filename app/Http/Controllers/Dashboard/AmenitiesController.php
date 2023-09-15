@@ -36,14 +36,15 @@ class AmenitiesController extends Controller
          $request->validate([
             'name' => 'required|string',
             'description' => 'nullable|string',
-            'image_url' => 'nullable|image|mimes:jpeg,png,jpg,gif',
-        ]);
+            'image_url' => 'image|mimes:jpeg,png,jpg,gif',
+                ]);
 
-
-        $img_name = rand().time().$request->file('image_url')->getClientOriginalName();
-        $request->file('image_url')->move(public_path('uploads/amenities'), $img_name);
-
-
+                if ($request->hasFile('image_url')) {
+                    $img_name = rand() . time() . $request->file('image_url')->getClientOriginalName();
+                    $request->file('image_url')->move(public_path('uploads/amenities'), $img_name);
+                } else {
+                    $img_name = null; // Or provide a default value or handle it as needed
+                }
 
         Amenity::create([
             'name' => $request->name,

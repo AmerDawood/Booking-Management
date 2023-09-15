@@ -26,6 +26,7 @@
                                         <tr>
                                             <th scope="col">ID</th>
                                             <th scope="col">Name</th>
+                                            <th scope="col">Email</th>
                                             <th scope="col">Positions</th>
                                             <th scope="col">Joind At</th>
                                             <th scope="col">Action</th>
@@ -37,10 +38,29 @@
                                         <tr>
                                             <td class="fw-medium">{{ $admin->id }}</td>
                                             <td>{{ $admin->name }}</td>
-                                            <td>Positiond Title</td>
-                                            <td>{{ $admin->created_at }}</td>
-                                            <td><span class="badge badge-soft-success"></span></td>
-                                        </tr>
+                                            <td>{{ $admin->email }}</td>
+
+                                            <td>{{ $admin->position_name }}</td>
+                                            <td>{{ $admin->created_at->diffForHumans() }}</td>
+                                            <td>
+                                                <a href="" class="btn btn-success btn-sm">
+                                                    <i class="fas fa-eye"></i>
+                                                </a>
+                                                {{-- {{ route('places.edit', $place->id) }} --}}
+                                                <a href="" class="btn btn-primary btn-sm">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+
+
+
+                                                {{-- <form action="{{ route('places.destroy', $place->id) }}" method="POST" style="display: inline-block;">
+                                                    @csrf
+                                                    @method('DELETE') --}}
+                                                    <button type="submit" class="btn btn-danger btn-sm btn-delete">
+                                                        <i class="fas fa-trash-alt"></i>
+                                                    </button>
+                                                {{-- </form> --}}
+                                            </td>                                        </tr>
                                         @endforeach
 
                                     </tbody>

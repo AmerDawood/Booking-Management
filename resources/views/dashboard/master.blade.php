@@ -10,7 +10,6 @@
 
         @include('dashboard.layouts.header')
 
-
         <!-- ========== App Menu ========== -->
           @include('dashboard.layouts.sidebar')
         <!-- Left Sidebar End -->

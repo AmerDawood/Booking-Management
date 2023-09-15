@@ -36,7 +36,7 @@
 
 
                             <li class="nav-item">
-                                <a href="" class="nav-link" data-key="t-pricing"> Avaliable Spaces </a>
+                                <a href="{{ route('available.spaces') }}" class="nav-link" data-key="t-pricing"> Avaliable Spaces </a>
                             </li>
 
 
