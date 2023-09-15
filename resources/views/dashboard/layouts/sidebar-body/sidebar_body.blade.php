@@ -8,7 +8,7 @@
                         <ul class="nav nav-sm flex-column">
 
                             <li class="nav-item">
-                                <a href="" class="nav-link" data-key="t-crm"> Dashboard </a>
+                                <a href="{{ route('dashboard.index') }}" class="nav-link" data-key="t-crm"> Dashboard </a>
                             </li>
                             <li class="nav-item">
                                 <a href="{{ route('website') }}" class="nav-link" data-key="t-analytics"> Website </a>
@@ -29,7 +29,7 @@
 
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="#sidebarPages" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarPages">
-                        <i class="mdi mdi-sticker-text-outline"></i> <span data-key="t-pages">Spaces</span>
+                        <i class="mdi mdi-sticker-text-outline"></i> <span data-key="t-pages">Booking</span>
                     </a>
                     <div class="collapse menu-dropdown" id="sidebarPages">
                         <ul class="nav nav-sm flex-column">
@@ -40,12 +40,31 @@
                             </li>
 
 
+                            {{-- <li class="nav-item">
+                                <a href="{{ route('make.book') }}" class="nav-link" data-key="t-gallery"> Make a Book </a>
+                            </li> --}}
+
+
+
                             <li class="nav-item">
-                                <a href="" class="nav-link" data-key="t-gallery"> Make a request </a>
+                                <a href="{{ route('booking.request') }}" class="nav-link" data-key="t-gallery"> My Booking Request </a>
                             </li>
 
 
+                        </ul>
+                    </div>
+                </li>
 
+
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="#sidebarLandingPlace" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarLandingPlace">
+                        <i class="ri-rocket-line"></i> <span data-key="t-landing">Privacy</span>
+                    </a>
+                    <div class="collapse menu-dropdown" id="sidebarLandingPlace">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a href="{{ route('privacy') }}" class="nav-link" data-key="t-one-page"> Privacy & Policy </a>
+                            </li>
                         </ul>
                     </div>
                 </li>
@@ -154,7 +173,7 @@
                         <a href="{{ route('users.all') }}" class="nav-link" data-key="t-alerts">All Users</a>
                     </li>
                     <li class="nav-item">
-                        <a href="" class="nav-link" data-key="t-badges">Add User</a>
+                        <a href="{{ route('create.user') }}" class="nav-link" data-key="t-badges">Add User</a>
                     </li>
                 </ul>
             </div>

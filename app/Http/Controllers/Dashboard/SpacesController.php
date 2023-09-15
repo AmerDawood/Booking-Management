@@ -78,9 +78,6 @@ class SpacesController extends Controller
 
 
 
-
-
-
         // Upload Album to images table if exists
         if ($request->has('album')) {
             foreach ($request->album as $item) {

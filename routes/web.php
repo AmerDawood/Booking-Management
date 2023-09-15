@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Auth\AdminAuthController;
 use App\Http\Controllers\Auth\UserAuthController;
 use App\Http\Controllers\Dashboard\AmenitiesController;
+use App\Http\Controllers\Dashboard\BookingController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\PlaceController;
 use App\Http\Controllers\Dashboard\SpacesController;
@@ -49,12 +50,33 @@ Route::middleware(['auth.user_or_admin'])->group(function(){
         Route::get('admins',[AdminController::class,'admins'])->name('admins.all');
 
 
+        Route::post('/user/change-status/{user}', [AdminController::class ,'changeStatus'])->name('user.change-status');
+        Route::get('create/user', [AdminController::class ,'create'])->name('create.user');
+
+        Route::post('/users', [AdminController::class,'store'])->name('users.store');
+
+
+
     });
 
 
     Route::middleware('auth')->group(function(){
 
         Route::get('available/spaces', [UserController::class ,'index'])->name('available.spaces');
+
+        Route::get('booking-request', [BookingController::class ,'index'])->name('booking.request');
+        Route::post('booking-request', [BookingController::class ,'store'])->name('booking.store');
+
+        Route::get('make-booking', [BookingController::class ,'create'])->name('make.book');
+
+
+
+        Route::get('space/details/{id}',[BookingController::class,'show'])->name('user.space.details');
+
+
+        Route::get('privacy',[UserController::class,'privacy'])->name('privacy');
+
+
 
     });
 

@@ -18,4 +18,13 @@ class UserController extends Controller
             'spaces' => $spaces
         ]);
     }
+
+    public function privacy ()
+    {
+        return view('dashboard.user.privacy.index');
+    }
+
+
+
+
 }

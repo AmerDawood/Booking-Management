@@ -47,24 +47,35 @@
 
                                             <td>{{ $user->created_at->diffForHumans() }}</td>
                                             <td>
-                                                <a href="" class="btn btn-success btn-sm">
-                                                    <i class="fas fa-eye"></i>
-                                                </a>
-                                                {{-- {{ route('places.edit', $place->id) }} --}}
-                                                <a href="" class="btn btn-primary btn-sm">
-                                                    <i class="fas fa-edit"></i>
-                                                </a>
+                                                <div class="d-flex justify-content-between mb-0">
+                                                    {{-- Edit Button --}}
+                                                    <a href="" class="btn btn-primary btn-sm">
+                                                        <i class="fas fa-edit"></i>
+                                                    </a>
 
+                                                    {{-- Change Status Button --}}
+                                                    <form action="{{ route('user.change-status', $user) }}" method="POST">
+                                                        @csrf
+                                                        <button type="submit" class="btn btn-sm {{ $user->status === 'active' ? 'btn-success' : 'btn-danger' }}">
+                                                            @if ($user->status === 'active')
+                                                                <i class="fas fa-check"></i> <!-- Icon for active status -->
+                                                            @else
+                                                                <i class="fas fa-times"></i> <!-- Icon for inactive status -->
+                                                            @endif
+                                                        </button>
+                                                    </form>
 
-
-                                                {{-- <form action="{{ route('places.destroy', $place->id) }}" method="POST" style="display: inline-block;">
-                                                    @csrf
-                                                    @method('DELETE') --}}
-                                                    <button type="submit" class="btn btn-danger btn-sm btn-delete">
-                                                        <i class="fas fa-trash-alt"></i>
-                                                    </button>
-                                                {{-- </form> --}}
+                                                    {{-- Delete Button --}}
+                                                    {{-- <form action="{{ route('places.destroy', $place->id) }}" method="POST" style="display: inline-block;"> --}}
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-danger btn-sm btn-delete">
+                                                            <i class="fas fa-trash-alt"></i>
+                                                        </button>
+                                                    {{-- </form> --}}
+                                                </div>
                                             </td>
+
                                         </tr>
                                         @endforeach
 

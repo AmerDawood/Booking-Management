@@ -3,6 +3,7 @@
 
 
 
+
 @section('content')
 
 
@@ -11,7 +12,6 @@
             <div class="row">
 
                 @foreach ($spaces as $space)
-
 
                 <div class="col-sm-6 col-xl-4" >
                     <!-- Simple card -->
@@ -25,9 +25,14 @@
                         </div>
                         <div class="card-footer">
                             <p class="card-text mb-0">
-                                Last updated 3 mins ago
+                                {{-- Last updated 3 mins ago --}}
+                                <a href="{{ route('user.space.details',$space->id) }}">
+                                <button type="button" class="btn btn-primary">Show Details</button>
+
+                                </a>
                             </p>
                         </div>
+
                     </div>
                 </div>
                 @endforeach

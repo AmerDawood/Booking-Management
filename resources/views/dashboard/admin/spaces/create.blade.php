@@ -87,6 +87,22 @@
 
 
 
+
+                                      <div class="mb-3">
+                                        <label>Album</label>
+                                        <input type="file" name="album[]" multiple class="form-control" />
+                                        <div class="album">
+                                            {{-- @foreach ($product->album as $img)
+                                                <div class="album-item">
+                                                    <a href="{{ route('admin.products.delete_image', $img->id) }}"><i class="fas fa-times"></i></a>
+                                                    <img width="60" src="{{ asset('uploads/products/'.$img->path) }}" alt="">
+                                                </div>
+                                            @endforeach --}}
+                                        </div>
+                                    </div>
+
+
+
                                     <div class="text-end">
                                         <button type="submit" class="btn btn-primary">Add Space</button>
                                     </div>
