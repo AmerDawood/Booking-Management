@@ -25,7 +25,9 @@
                         </div>
                         <div class="card-footer">
                             <p class="card-text mb-0">
-                                Last updated 3 mins ago
+                               <a href="{{ route('spaces.show',$space->id) }}">
+                                <button>Show</button>
+                               </a>
                             </p>
                         </div>
                     </div>

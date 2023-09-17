@@ -9,8 +9,8 @@
                         <div class="col-12">
                             <div class="d-flex align-items-lg-center flex-lg-row flex-column">
                                 <div class="flex-grow-1">
-                                    <h4 class="fs-16 mb-1">Good Morning, Anna!</h4>
-                                    <p class="text-muted mb-0">Here's what's happening with your store today.</p>
+                                    <h4 class="fs-16 mb-1">Good Morning, {{ auth()->guard('admin')->user()->name }}</h4>
+                                    <p class="text-muted mb-0">Here's what's happening with GSG spaces today</p>
                                 </div>
 
                             </div><!-- end card header -->
@@ -26,7 +26,7 @@
                                 <div class="card-body">
                                     <div class="d-flex align-items-center">
                                         <div class="flex-grow-1 overflow-hidden">
-                                            <p class="text-uppercase fw-medium text-muted text-truncate mb-0"> Total Projects</p>
+                                            <p class="text-uppercase fw-medium text-muted text-truncate mb-0"> Total Spaces</p>
                                         </div>
                                         <div class="flex-shrink-0">
 
@@ -35,7 +35,7 @@
                                     <div class="d-flex align-items-end justify-content-between mt-4">
                                         <div>
                                             <h4 class="fs-22 fw-semibold ff-secondary mb-4"><span class="counter-value" data-target=""></span> </h4>
-                                            <a href="" class="text-decoration-underline">View all projects</a>
+                                            <a href="" class="text-decoration-underline">View all spaces</a>
                                         </div>
                                         <div class="avatar-sm flex-shrink-0">
                                             <span class="avatar-title bg-success rounded fs-3">
@@ -53,14 +53,14 @@
                                 <div class="card-body">
                                     <div class="d-flex align-items-center">
                                         <div class="flex-grow-1 overflow-hidden">
-                                            <p class="text-uppercase fw-medium text-muted text-truncate mb-0">Total Skills</p>
+                                            <p class="text-uppercase fw-medium text-muted text-truncate mb-0">Total Users</p>
                                         </div>
 
                                     </div>
                                     <div class="d-flex align-items-end justify-content-between mt-4">
                                         <div>
                                             <h4 class="fs-22 fw-semibold ff-secondary mb-4"><span class="counter-value" data-target=""></span></h4>
-                                            <a href="" class="text-decoration-underline">View all skills</a>
+                                            <a href="" class="text-decoration-underline">View all users</a>
                                         </div>
                                         <div class="avatar-sm flex-shrink-0">
                                             <span class="avatar-title bg-info rounded fs-3">
@@ -78,14 +78,14 @@
                                 <div class="card-body">
                                     <div class="d-flex align-items-center">
                                         <div class="flex-grow-1 overflow-hidden">
-                                            <p class="text-uppercase fw-medium text-muted text-truncate mb-0">Total Skills</p>
+                                            <p class="text-uppercase fw-medium text-muted text-truncate mb-0">Total Admins</p>
                                         </div>
 
                                     </div>
                                     <div class="d-flex align-items-end justify-content-between mt-4">
                                         <div>
                                             <h4 class="fs-22 fw-semibold ff-secondary mb-4"><span class="counter-value" data-target=""></span></h4>
-                                            <a href="" class="text-decoration-underline">View all skills</a>
+                                            <a href="" class="text-decoration-underline">View all admins</a>
                                         </div>
                                         <div class="avatar-sm flex-shrink-0">
                                             <span class="avatar-title bg-info rounded fs-3">
@@ -103,14 +103,14 @@
                                 <div class="card-body">
                                     <div class="d-flex align-items-center">
                                         <div class="flex-grow-1 overflow-hidden">
-                                            <p class="text-uppercase fw-medium text-muted text-truncate mb-0">Total Skills</p>
+                                            <p class="text-uppercase fw-medium text-muted text-truncate mb-0">Total Aminty</p>
                                         </div>
 
                                     </div>
                                     <div class="d-flex align-items-end justify-content-between mt-4">
                                         <div>
                                             <h4 class="fs-22 fw-semibold ff-secondary mb-4"><span class="counter-value" data-target=""></span></h4>
-                                            <a href="" class="text-decoration-underline">View all skills</a>
+                                            <a href="" class="text-decoration-underline">View all aminty</a>
                                         </div>
                                         <div class="avatar-sm flex-shrink-0">
                                             <span class="avatar-title bg-info rounded fs-3">
@@ -155,7 +155,7 @@
                         <div class="col-xl-">
                             <div class="card">
                                 <div class="card-header align-items-center d-flex">
-                                    <h4 class="card-title mb-0 flex-grow-1">Latest Projects</h4>
+                                    <h4 class="card-title mb-0 flex-grow-1">Latest Booking Request</h4>
                                     <div class="flex-shrink-0">
                                         <button type="button" class="btn btn-soft-info btn-sm">
                                             <i class="ri-file-list-3-line align-middle"></i><a href="">View all </a>
@@ -216,77 +216,6 @@
                             </div> <!-- .card-->
                         </div> <!-- .col-->
                     </div> <!-- end row-->
-
-
-
-                    <div class="row">
-                        <div class="col-xl-">
-                            <div class="card">
-                                <div class="card-header align-items-center d-flex">
-                                    <h4 class="card-title mb-0 flex-grow-1">Latest Skills</h4>
-                                    <div class="flex-shrink-0">
-                                        <button type="button" class="btn btn-soft-info btn-sm">
-                                            <i class="ri-file-list-3-line align-middle"></i><a href="">View all </a>
-                                        </button>
-                                    </div>
-                                </div><!-- end card header -->
-
-                                <div class="card-body">
-                                    <div class="table-responsive table-card">
-                                        <table
-                                            class="table table-borderless table-centered align-middle table-nowrap mb-0">
-                                            <thead class="text-muted table-light">
-                                                <tr>
-                                                    <th scope="col">id</th>
-                                                    <th scope="col">name</th>
-                                                    <th scope="col">Created At</th>
-                                                    <th scope="col">Updated At</th>
-
-
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                {{-- @foreach ($skills as $skill )
-
-                                                <tr>
-                                                    <td>
-                                                        <a href="apps-ecommerce-order-details.html"
-                                                            class="fw-medium link-primary">{{ $skill->id }}</a>
-                                                    </td>
-                                                    <td>
-                                                        <div class="d-flex align-items-center">
-
-                                                            <div class="flex-grow-1">{{ $skill->name }}</div>
-                                                        </div>
-                                                    </td>
-
-
-                                                    <td>
-                                                        <div class="d-flex align-items-center">
-
-                                                            <div class="flex-grow-1">{{ $skill->created_at->diffForHumans() }}</div>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="d-flex align-items-center">
-
-                                                            <div class="flex-grow-1">{{ $skill->updated_at->diffForHumans() }}</div>
-                                                        </div>
-                                                    </td>
-
-                                                </tr><!-- end tr -->
-
-                                                @endforeach
-                                                            --}}
-                                            </tbody><!-- end tbody -->
-                                        </table><!-- end table -->
-                                    </div>
-                                </div>
-                            </div> <!-- .card-->
-                        </div> <!-- .col-->
-                    </div> <!-- end row-->
-
-
         </div>
 
     </div>

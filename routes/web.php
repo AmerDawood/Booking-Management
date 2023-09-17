@@ -71,7 +71,7 @@ Route::middleware(['auth.user_or_admin'])->group(function(){
 
 
 
-        Route::get('space/details/{id}',[BookingController::class,'show'])->name('user.space.details');
+        Route::get('space/details/{space}',[BookingController::class,'show'])->name('user.space.details');
 
 
         Route::get('privacy',[UserController::class,'privacy'])->name('privacy');

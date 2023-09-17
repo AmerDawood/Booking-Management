@@ -56,10 +56,10 @@
                             <div class="product-img-slider sticky-side-div">
                                 <div class="swiper product-thumbnail-slider p-2 rounded bg-light">
                                     <div class="swiper-wrapper">
-                                        <div class="swiper-slide">
-                                            <img src="{{ asset('admin/images/products/img-8.png') }}" alt="" class="img-fluid d-block" />
-                                        </div>
-                                        <div class="swiper-slide">
+                                        {{-- <div class="swiper-slide"> --}}
+                                            <img src="{{ asset('uploads/spaces/'.$space->image_url) }}" style="height: 300px;" alt="" />
+                                        {{-- </div> --}}
+                                        {{-- <div class="swiper-slide">
                                             <img src="{{ asset('admin/images/products/img-6.png') }}" alt="" class="img-fluid d-block" />
                                         </div>
                                         <div class="swiper-slide">
@@ -67,13 +67,13 @@
                                         </div>
                                         <div class="swiper-slide">
                                             <img src="{{ asset('admin/images/products/img-8.png') }}" alt="" class="img-fluid d-block" />
-                                        </div>
+                                        </div> --}}
                                     </div>
-                                    <div class="swiper-button-next bg-white shadow"></div>
-                                    <div class="swiper-button-prev bg-white shadow"></div>
+                                    {{-- <div class="swiper-button-next bg-white shadow"></div> --}}
+                                    {{-- <div class="swiper-button-prev bg-white shadow"></div> --}}
                                 </div>
                                 <!-- end swiper thumbnail slide -->
-                                <div class="swiper product-nav-slider mt-2">
+                                {{-- <div class="swiper product-nav-slider mt-2">
                                     <div class="swiper-wrapper">
                                         <div class="swiper-slide">
                                             <div class="nav-slide-item">
@@ -96,7 +96,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
                                 <!-- end swiper nav slide -->
                             </div>
                         </div>
@@ -139,7 +139,7 @@
                                     </div> --}}
                                 </div>
 
-                                <div class="d-flex flex-wrap gap-2 align-items-center mt-3">
+                                {{-- <div class="d-flex flex-wrap gap-2 align-items-center mt-3">
                                     <div class="text-muted fs-16">
                                         <span class="mdi mdi-star text-warning"></span>
                                         <span class="mdi mdi-star text-warning"></span>
@@ -148,7 +148,7 @@
                                         <span class="mdi mdi-star text-warning"></span>
                                     </div>
                                     <div class="text-muted">( 5.50k Customer Review )</div>
-                                </div>
+                                </div> --}}
 
 
                                 <div class="row">
@@ -156,10 +156,12 @@
                                         <div class="mt-3">
                                             <h5 class="fs-14">Features :</h5>
                                             <ul class="list-unstyled">
-                                                <li class="py-1"><i class="mdi mdi-circle-medium me-1 text-muted align-middle"></i> Full Sleeve</li>
-                                                <li class="py-1"><i class="mdi mdi-circle-medium me-1 text-muted align-middle"></i> Cotton</li>
-                                                <li class="py-1"><i class="mdi mdi-circle-medium me-1 text-muted align-middle"></i> All Sizes available</li>
-                                                <li class="py-1"><i class="mdi mdi-circle-medium me-1 text-muted align-middle"></i> 4 Different Color</li>
+
+
+                                                @foreach ($amenityNames as $amenityName)
+                                                <li class="py-1"><i class="mdi mdi-circle-medium me-1 text-muted align-middle"></i> {{ $amenityName }}</li>
+                                                @endforeach
+
                                             </ul>
                                         </div>
                                     </div>
@@ -193,39 +195,35 @@
                                                 <table class="table mb-0">
                                                     <tbody>
                                                         <tr>
-                                                            <th scope="row" style="width: 200px;">Category</th>
-                                                            <td>T-Shirt</td>
+                                                            <th scope="row" style="width: 200px;">Name</th>
+                                                            <td>{{ $space->name }}</td>
                                                         </tr>
                                                         <tr>
-                                                            <th scope="row">Brand</th>
-                                                            <td>Tommy Hilfiger</td>
+                                                            <th scope="row">Capacity</th>
+                                                            <td>{{ $space->capacity }}</td>
                                                         </tr>
                                                         <tr>
-                                                            <th scope="row">Color</th>
-                                                            <td>Blue</td>
+                                                            <th scope="row">Is Available</th>
+                                                            <td>{{ $space->is_available == 1 ? 'True' : 'False' }}
+                                                            </td>
                                                         </tr>
                                                         <tr>
-                                                            <th scope="row">Material</th>
-                                                            <td>Cotton</td>
+                                                            <th scope="row">City</th>
+                                                            <td>{{ $space->place->city }}</td>
                                                         </tr>
                                                         <tr>
-                                                            <th scope="row">Weight</th>
-                                                            <td>140 Gram</td>
+                                                            <th scope="row">Place</th>
+                                                            <td>{{ $space->place->name}}</td>
                                                         </tr>
+
                                                     </tbody>
                                                 </table>
                                             </div>
                                         </div>
                                         <div class="tab-pane fade" id="nav-detail" role="tabpanel" aria-labelledby="nav-detail-tab">
                                             <div>
-                                                <h5 class="font-size-16 mb-3">Tommy Hilfiger Sweatshirt for Men (Pink)</h5>
-                                                <p>Tommy Hilfiger men striped pink sweatshirt. Crafted with cotton. Material composition is 100% organic cotton. This is one of the world’s leading designer lifestyle brands and is internationally recognized for celebrating the essence of classic American cool style, featuring preppy with a twist designs.</p>
-                                                <div>
-                                                    <p class="mb-2"><i class="mdi mdi-circle-medium me-1 text-muted align-middle"></i> Machine Wash</p>
-                                                    <p class="mb-2"><i class="mdi mdi-circle-medium me-1 text-muted align-middle"></i> Fit Type: Regular</p>
-                                                    <p class="mb-2"><i class="mdi mdi-circle-medium me-1 text-muted align-middle"></i> 100% Cotton</p>
-                                                    <p class="mb-0"><i class="mdi mdi-circle-medium me-1 text-muted align-middle"></i> Long sleeve</p>
-                                                </div>
+                                                <p>{{ $space->description }}</p>
+
                                             </div>
                                         </div>
                                     </div>

@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Dashboard;
 
+use App\Events\BookingMade;
 use App\Http\Controllers\Controller;
+use App\Models\Amenity;
 use App\Models\Booking;
+use App\Models\Image;
 use App\Models\Space;
 use Illuminate\Http\Request;
 
@@ -43,7 +46,12 @@ class BookingController extends Controller
             // 'status' => 'required|in:pending,approved,rejected',
         ]);
 
-        Booking::create($validatedData);
+      $booking =  Booking::create($validatedData);
+
+        // event(new BookingMade($booking));
+
+        BookingMade::dispatch($booking);
+
 
         return redirect()->route('booking.request')->with('msg', 'Booking Request created successfully');
     }
@@ -51,13 +59,50 @@ class BookingController extends Controller
 
 
 
-    public function show($id)
+    public function show(Space $space)
     {
-        $space = Space::findOrFail($id);
+        $space->load('place');
+        $space = Space::findOrFail($space->id);
+
+
+        $amenityIds = json_decode($space->amenities);
+
+        $amenityNames = [];
+
+        if (!is_array($amenityIds)) {
+            $amenityIds = [];
+        }
+
+        // Initialize an empty array to store amenity names
+        $amenityNames = [];
+
+        // Loop through the amenity IDs and retrieve their names
+        foreach ($amenityIds as $amenityId) {
+            $amenity = Amenity::find($amenityId);
+            if ($amenity) {
+                $amenityNames[] = $amenity->name;
+            } else {
+                $amenityNames[] = 'Amenity not found';
+            }
+        }
+
+        // $album = Image::find(10);
+        $album = Image::where('space_id' , $space->id)->get();
+
+        // dd($album);
 
 
 
-        return view('dashboard.user.booking.details', compact('space'));
+
+
+        // if (!$album) {
+        //     // Handle the case where the album is not found, e.g., show an error or redirect
+        //     return redirect()->route('booking.request')->with('error', 'Album not found');
+        // }
+
+
+
+        return view('dashboard.user.booking.details', compact('space','amenityNames','album'));
     }
 
 }

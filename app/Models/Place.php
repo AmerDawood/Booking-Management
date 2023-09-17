@@ -11,4 +11,12 @@ class Place extends Model
 
     protected $fillable = ['name','address','city','state','zip_code','country','latitude','longitude','description'];
 
+
+
+
+    public function spaces()
+    {
+        return $this->hasMany(Space::class, 'place_id');
+    }
+
 }

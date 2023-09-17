@@ -50,13 +50,14 @@ class SpacesController extends Controller
         // dd($request->all());
 
 
-        $request->validate([
+        $validatedData =   $request->validate([
             'name' => 'required|string',
             'description' => 'required|string',
             'capacity' => 'required|integer',
             'image_url' => 'required',
             'is_available' => 'required|boolean',
             'place_id' => 'required|integer',
+            'amenities' => 'array',
         ]);
 
 
@@ -64,7 +65,9 @@ class SpacesController extends Controller
         $request->file('image_url')->move(public_path('uploads/spaces'), $img_name);
 
 
-        $isAvailable = $request->has('is_available') ? true : false;
+        $amenities = isset($validatedData['amenities']) ? json_encode($validatedData['amenities']) : null;
+
+        // $isAvailable = $request->has('is_available') ? true : false;
 
 
         $space =  Space::create([
@@ -74,6 +77,7 @@ class SpacesController extends Controller
             'image_url' => $img_name,
             'is_available' => $request->input('is_available', false), // Ensure a boolean value
             'place_id' => $request->place_id,
+            'amenities' => $amenities,
         ]);
 
 
@@ -97,16 +101,24 @@ class SpacesController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show($id)
+    public function show(Space $space)
     {
-        $space = Space::find($id);
+        $amenityIds = json_decode($space->amenities);
 
-        if (!$space) {
-            return redirect()->route('spaces.index')->with('error', 'Space not found');
+        $amenityNames = [];
+
+        foreach ($amenityIds as $amenityId) {
+            $amenity = Amenity::find($amenityId);
+            if ($amenity) {
+                $amenityNames[] = $amenity->name;
+            } else {
+                $amenityNames[] = 'Amenity not found';
+            }
         }
 
-        return view('spaces.show', compact('space'));
+        return view('dashboard.admin.spaces.show', compact('space', 'amenityNames'));
     }
+
 
     /**
      * Show the form for editing the specified resource.

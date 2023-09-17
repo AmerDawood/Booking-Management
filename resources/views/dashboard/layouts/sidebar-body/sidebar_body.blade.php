@@ -162,6 +162,27 @@
 
 
 <li class="nav-item">
+    <a class="nav-link menu-link" href="#sidebarBooking" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarBooking">
+        <i class="mdi mdi-cube-outline"></i> <span data-key="t-base-ui">Booking Request</span>
+    </a>
+    <div class="collapse menu-dropdown mega-dropdown-menu" id="sidebarBooking">
+        <div class="row">
+            <div class="col-lg-4">
+                <ul class="nav nav-sm flex-column">
+                    <li class="nav-item">
+                        <a href="" class="nav-link" data-key="t-alerts">All Booking Request</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="" class="nav-link" data-key="t-badges">Deleted Booking Request</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</li>
+
+
+<li class="nav-item">
     <a class="nav-link menu-link" href="#sidebarUsers" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarUsers">
         <i class="mdi mdi-cube-outline"></i> <span data-key="t-base-ui">Users</span>
     </a>
@@ -194,6 +215,27 @@
                     </li>
                     <li class="nav-item">
                         <a href="" class="nav-link" data-key="t-badges">Add Admin</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</li>
+
+
+<li class="nav-item">
+    <a class="nav-link menu-link" href="#settings" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="settings">
+        <i class="mdi mdi-cube-outline"></i> <span data-key="t-base-ui">Setting</span>
+    </a>
+    <div class="collapse menu-dropdown mega-dropdown-menu" id="settings">
+        <div class="row">
+            <div class="col-lg-4">
+                <ul class="nav nav-sm flex-column">
+                    <li class="nav-item">
+                        <a href="" class="nav-link" data-key="t-alerts">Privacy & Policy</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="" class="nav-link" data-key="t-badges">FAQs</a>
                     </li>
                 </ul>
             </div>

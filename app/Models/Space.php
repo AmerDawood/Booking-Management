@@ -12,6 +12,7 @@ class Space extends Model
 
     protected $fillable = ['name','description','capacity','image_url','amenities','is_available','place_id'];
 
+
     public function amenities()
     {
         return $this->belongsToMany(Amenity::class);
@@ -21,4 +22,13 @@ class Space extends Model
     {
         return $this->hasMany(Image::class);
     }
+
+
+
+    public function place()
+    {
+        return $this->belongsTo(Place::class, 'place_id');
+    }
+
+
 }

@@ -75,6 +75,16 @@
                                     </label>
                                     @endforeach --}}
 
+                                    <div>
+                                        <label>Select Amenities:</label>
+                                        @foreach ($amenities as $item)
+                                            <div>
+                                                <input type="checkbox" name="amenities[]" value="{{ $item->id }}">
+                                                {{ $item->name }}
+                                            </div>
+                                        @endforeach
+                                    </div>
+
 
 
 

@@ -60,6 +60,18 @@ class AdminController extends Controller
 
 
 
+        // Admin
+
+
+        public function createAdmin()
+        {
+
+        }
+
+        public function storeAdmin ()
+        {
+            
+        }
 
 
 
