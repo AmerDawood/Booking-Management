@@ -17,7 +17,7 @@ class SpacesController extends Controller
      */
     public function index()
     {
-        $spaces = Space::orderByDesc('id')->get();
+        $spaces = Space::orderByDesc('id')->paginate(3);
         return view('dashboard.admin.spaces.index',[
             'spaces' => $spaces,
         ]);

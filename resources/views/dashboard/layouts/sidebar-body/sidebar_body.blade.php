@@ -170,7 +170,7 @@
             <div class="col-lg-4">
                 <ul class="nav nav-sm flex-column">
                     <li class="nav-item">
-                        <a href="" class="nav-link" data-key="t-alerts">All Booking Request</a>
+                        <a href="{{ route('requests.index') }}" class="nav-link" data-key="t-alerts">All Booking Request</a>
                     </li>
                     <li class="nav-item">
                         <a href="" class="nav-link" data-key="t-badges">Deleted Booking Request</a>

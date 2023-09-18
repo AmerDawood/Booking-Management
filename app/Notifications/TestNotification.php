@@ -30,7 +30,7 @@ class TestNotification extends Notification
     public function via(object $notifiable): array
     {
         // return ['mail'];
-        $notification_channel = 'database,broadcast';
+        $notification_channel = 'database,broadcast,mail';
         $channels = explode(',', $notification_channel);
         return $channels;
     }

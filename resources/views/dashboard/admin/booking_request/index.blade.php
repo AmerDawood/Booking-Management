@@ -37,40 +37,41 @@
 
 
 
-                                        @foreach ($places as  $place)
+                                        @foreach ($bookings as  $booking)
 
                                         <tr>
-                                            <td class="fw-medium">{{ $place->id }}</td>
-                                            <td>{{ $place->name }}</td>
-                                            <td>{{ $place->city }}</td>
+                                            <td class="fw-medium">{{ $booking->id }}</td>
+                                            <td>{{ $booking->name }}</td>
+                                            <td></td>
 
-                                            <td>{{ $place->created_at }}</td>
-                                            <td><span class="badge badge-soft-success">{{ $place->state }}</span></td>
+                                            <td>{{ $booking->created_at }}</td>
+                                            <td><span class="badge badge-soft-success"></span></td>
 
 
 
                                             <td>
-                                                <a href="{{ route('places.edit', $place->id) }}" class="btn btn-primary btn-sm">
+                                                <a href="" class="btn btn-primary btn-sm">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
 
-                                                <form action="{{ route('places.destroy', $place->id) }}" method="POST" style="display: inline-block;">
+                                                {{-- <form action="{{ route('places.destroy', $place->id) }}" method="POST" style="display: inline-block;">
                                                     @csrf
-                                                    @method('DELETE')
+                                                    @method('DELETE') --}}
                                                     <button type="submit" class="btn btn-danger btn-sm btn-delete">
                                                         <i class="fas fa-trash-alt"></i>
                                                     </button>
-                                                </form>
+                                                {{-- </form> --}}
                                             </td>
 
                                         </tr>
+
                                         @endforeach
 
                                     </tbody>
 
                                 </table>
                                 <div style="padding: 20px">
-                                    {{ $places->links() }}
+                                    {{ $bookings->links() }}
 
                                     </div>
                             </div>

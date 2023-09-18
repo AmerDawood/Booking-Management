@@ -75,6 +75,10 @@
                                     </tbody>
 
                                 </table>
+                                <div style="padding: 20px">
+                                    {{ $amenities->links() }}
+
+                                    </div>
                             </div>
 
                     </div><!-- end card-body -->

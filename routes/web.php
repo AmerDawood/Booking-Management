@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\AdminAuthController;
 use App\Http\Controllers\Auth\UserAuthController;
 use App\Http\Controllers\Dashboard\AmenitiesController;
 use App\Http\Controllers\Dashboard\BookingController;
+use App\Http\Controllers\Dashboard\BookingRequestCobtroller;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\PlaceController;
 use App\Http\Controllers\Dashboard\SpacesController;
@@ -14,6 +15,8 @@ use App\Models\Booking;
 use App\Notifications\TestNotification;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -32,7 +35,7 @@ use Illuminate\Support\Facades\Route;
 
 
 
-
+Route::prefix(LaravelLocalization::setLocale())->group(function() {
 
 
 Route::middleware(['auth.user_or_admin'])->group(function(){
@@ -57,7 +60,10 @@ Route::middleware(['auth.user_or_admin'])->group(function(){
 
         Route::post('/users', [AdminController::class,'store'])->name('users.store');
 
+        Route::get('/newww',[BookingController::class,'bookingRequests'])->name('requests.index');
+        // Route::get('/booking-request',[BookingRequestCobtroller::class,'index'])->name('requests.index');
 
+        Route::get('/search', [AdminController::class,'search'])->name('search');
 
     });
 
@@ -117,3 +123,5 @@ Route::get('/send-email', [UserController::class, 'sendEmail']);
 
 
 include 'test.php';
+
+});

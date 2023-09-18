@@ -70,7 +70,7 @@ class AdminController extends Controller
 
         public function storeAdmin ()
         {
-            
+
         }
 
 
@@ -82,4 +82,58 @@ class AdminController extends Controller
 
         return view('dashboard.admin.admins.admins',compact('admins'));
       }
+
+
+
+
+
+    //   public function search(Request $request)
+    //   {
+
+    //       $customers = User::all();
+
+    //       $searchQuery = $request->q;
+
+    //       $customers->where(function ($query) use ($searchQuery) {
+    //           $query->whereHas('users', function ($subQuery) use ($searchQuery) {
+    //           })->orWhere('mobile', 'LIKE', $searchQuery . "%") // Search by mobile
+    //             ->orWhere('name', 'LIKE', "%" . $searchQuery . "%")
+    //             ; // Search by name
+    //       });
+
+    //       $result = $customers->get();
+    //       return response()->json(['users' => $result]);
+    //   }
+
+//     public function search(Request $request)
+// {
+//     $searchQuery = $request->input('q');
+
+//     $result = User::where(function ($query) use ($searchQuery) {
+//         $query->where('mobile', 'LIKE', $searchQuery . "%") // Search by mobile
+//               ->orWhere('name', 'LIKE', "%" . $searchQuery . "%"); // Search by name
+//     })->get();
+
+//     return response()->json(['users' => $result]);
+// }
+
+public function search(Request $request)
+{
+    // $user = Auth::user();
+    $customers = User::all();
+
+    $searchQuery = $request->q;
+
+    $customers->where(function ($query) use ($searchQuery) {
+        $query->where(function ($subQuery) use ($searchQuery) {
+            // $subQuery->where('mobile', 'LIKE', $searchQuery . "%")
+            $subQuery->orWhere('name', 'LIKE', "%" . $searchQuery . "%");
+        });
+    });
+
+    $result = $customers->get();
+    return response()->json(['customers' => $result]);
+}
+
+
 }

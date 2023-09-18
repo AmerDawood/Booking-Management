@@ -15,7 +15,7 @@ class PlaceController extends Controller
     public function index()
     {
 
-        $places = Place::orderByDesc('id')->get();
+        $places = Place::orderByDesc('id')->paginate(5);
 
         return view('dashboard.admin.places.index',compact('places'));
     }

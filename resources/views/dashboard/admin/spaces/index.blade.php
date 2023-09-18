@@ -32,8 +32,12 @@
                         </div>
                     </div>
                 </div>
-                @endforeach
 
+                @endforeach
+                                  <div style="padding: 20px">
+                                    {{ $spaces->links() }}
+
+                                    </div>
 
 
 

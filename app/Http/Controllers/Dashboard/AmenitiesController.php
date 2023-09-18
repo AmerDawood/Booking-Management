@@ -13,7 +13,7 @@ class AmenitiesController extends Controller
      */
     public function index()
     {
-        $amenities = Amenity::orderByDesc('id')->get();
+        $amenities = Amenity::orderByDesc('id')->paginate(4);
         return view('dashboard.admin.amenities.index',compact('amenities'));
     }
 

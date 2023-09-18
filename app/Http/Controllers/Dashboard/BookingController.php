@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Dashboard;
 
+use App\Events\BookingCreated;
 use App\Events\BookingMade;
 use App\Http\Controllers\Controller;
 use App\Models\Amenity;
@@ -49,7 +50,7 @@ class BookingController extends Controller
       $booking =  Booking::create($validatedData);
 
 
-
+      event(new BookingCreated($booking));
     //    event(new BookingMade($booking));
 
         return redirect()->route('booking.request')->with('msg', 'Booking Request created successfully');
@@ -102,6 +103,16 @@ class BookingController extends Controller
 
 
         return view('dashboard.user.booking.details', compact('space','amenityNames','album'));
+    }
+
+
+
+    public function bookingRequests()
+    {
+        $bookings = Booking::orderByDesc('id')->paginate(6);
+        return view('dashboard.admin.booking_request.index',[
+            'bookings' => $bookings,
+        ]);
     }
 
 }

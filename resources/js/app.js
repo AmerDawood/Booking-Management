@@ -1,6 +1,9 @@
+import Echo from 'laravel-echo';
 import './bootstrap';
 
-Echo.private('App.Models.User.' + userId)
-    .notification((notification) => {
-        toastr.success(notification.data)
-    });
+
+
+window.Echo.private('admin-notification')
+   .listen('.classwork-created', function(event) {
+      alert(event.title);
+   });
