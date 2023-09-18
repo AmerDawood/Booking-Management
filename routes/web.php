@@ -10,7 +10,9 @@ use App\Http\Controllers\Dashboard\PlaceController;
 use App\Http\Controllers\Dashboard\SpacesController;
 use App\Http\Controllers\Dashboard\UserController;
 use App\Http\Controllers\Website\WebsiteController;
-
+use App\Models\Booking;
+use App\Notifications\TestNotification;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -109,6 +111,9 @@ Route::post('admin/logout',[AdminAuthController::class,'logout'])->name('logout.
 
 
 
-Route::get('maps' , function(){
-    return view('dashboard.maps');
-});
+Route::get('/send-email', [UserController::class, 'sendEmail']);
+
+
+
+
+include 'test.php';

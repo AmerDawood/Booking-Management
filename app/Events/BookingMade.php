@@ -29,7 +29,7 @@ class BookingMade
     public function broadcastOn(): array
     {
         return [
-            new PrivateChannel('booking'),
+            new PrivateChannel('booking.'.$this->booking->id),
         ];
     }
 

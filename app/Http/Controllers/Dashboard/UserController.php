@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Mail\EmailFromAdmin;
 use App\Models\Space;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {
@@ -22,6 +24,15 @@ class UserController extends Controller
     public function privacy ()
     {
         return view('dashboard.user.privacy.index');
+    }
+
+
+    public function sendEmail()
+    {
+        $email = 'amermaher684@gmail.com'; // Replace with the recipient's email address
+        Mail::to($email)->send(new EmailFromAdmin());
+
+        return "Email sent successfully!";
     }
 
 

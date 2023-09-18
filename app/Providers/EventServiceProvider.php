@@ -19,10 +19,10 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
-        BookingMade::class => [
-            SendBookingNotification::class,
-            SendBookingNotificationToAdmins::class,
-        ],
+        // BookingMade::class => [
+        //     // SendBookingNotification::class,
+        //     SendBookingNotificationToAdmins::class,
+        // ],
 
     ];
 

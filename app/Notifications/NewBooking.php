@@ -30,15 +30,8 @@ class NewBooking extends Notification
     public function via(object $notifiable): array
     {
 
-        // $via = ['mail','database','broadcast'];
-        $via = ['broadcast'];
+        $via = ['database'];
 
-        // if($notifiable->receive_mail_notifications){
-        //     $via[] ='mail';
-        // }
-        // if($notifiable->receive_push_notifications){
-        //     $via[] ='brodcast';
-        // }
 
         return $via;
 
@@ -47,12 +40,7 @@ class NewBooking extends Notification
 
     protected function createMessage(){
 
-        // $classwork = $this->classWork;
-        // $content = __(':name Posted a new :type :title',[
-        //     'name' => $this->classWork->name,
-        //     'type' => $this->classWork->type,
-        //     'title' => $this->classWork->title,
-        // ]);
+
 
         return [
             'title' => 'Title Here',
@@ -63,22 +51,16 @@ class NewBooking extends Notification
     /**
      * Get the mail representation of the notification.
      */
-    // public function toMail(object $notifiable): MailMessage
-    // {
-    //     $classwork = $this->classWork;
-    //     $content = __(':name Posted a new :type :title',[
-    //         'name' => $this->classWork->name,
-    //         'type' => $this->classWork->type,
-    //         'title' => $this->classWork->title,
-    //     ]);
+    public function toMail(object $notifiable): MailMessage
+    {
 
-    //     return (new MailMessage)
-    //                 ->subject(__('New :type',['type' => $this->classWork->type]))
-    //                 ->greeting(__('Hi :name',['name'=>$notifiable->name]))
-    //                 ->line($content)
-    //                 ->action('Go To Classwork',  route('classrooms.classworks.show', ['classroom' => $classwork->classroom_id, 'classwork' => $classwork->id]))
-    //                 ->line('Thank you for using our application!');
-    // }
+
+        return (new MailMessage)
+                    ->subject(__('New :type',['type' => 'new type']))
+                    ->greeting(__('Hi :name',['name'=>'name here']))
+                    ->action('Go To Classwork', 'new link')
+                    ->line('Thank you for using our application!');
+    }
 
 
 

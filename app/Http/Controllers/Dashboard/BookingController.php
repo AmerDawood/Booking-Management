@@ -48,10 +48,9 @@ class BookingController extends Controller
 
       $booking =  Booking::create($validatedData);
 
-        // event(new BookingMade($booking));
 
-        BookingMade::dispatch($booking);
 
+    //    event(new BookingMade($booking));
 
         return redirect()->route('booking.request')->with('msg', 'Booking Request created successfully');
     }
