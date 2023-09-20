@@ -125,6 +125,9 @@ Route::get('/send-email', [UserController::class, 'sendEmail']);
 
 
 
+Route::get('/test-chart',function(){
+    return view('test_chart');
+});
 
 include 'test.php';
 
