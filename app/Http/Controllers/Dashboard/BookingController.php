@@ -107,12 +107,6 @@ class BookingController extends Controller
 
 
 
-    public function bookingRequests()
-    {
-        $bookings = Booking::orderByDesc('id')->paginate(6);
-        return view('dashboard.admin.booking_request.index',[
-            'bookings' => $bookings,
-        ]);
-    }
+
 
 }

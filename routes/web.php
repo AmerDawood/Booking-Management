@@ -60,7 +60,11 @@ Route::middleware(['auth.user_or_admin'])->group(function(){
 
         Route::post('/users', [AdminController::class,'store'])->name('users.store');
 
-        Route::get('/newww',[BookingController::class,'bookingRequests'])->name('requests.index');
+        Route::get('/all-booking-request',[BookingRequestCobtroller::class,'index'])->name('requests.index');
+        Route::get('/booking-request/details/{id}',[BookingRequestCobtroller::class,'details'])->name('admin.requests.details');
+        Route::put('/bookings/{id}/update-status/{status}', [BookingRequestCobtroller::class,'updateBookingStatus'])->name('bookings.updateStatus');
+
+
         // Route::get('/booking-request',[BookingRequestCobtroller::class,'index'])->name('requests.index');
 
         Route::get('/search', [AdminController::class,'search'])->name('search');

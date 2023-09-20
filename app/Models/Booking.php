@@ -17,4 +17,11 @@ class Booking extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+
+
+public function space()
+{
+    return $this->belongsTo(Space::class);
+}
 }

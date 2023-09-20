@@ -25,8 +25,8 @@
                                     <thead>
                                         <tr>
                                             <th scope="col">ID</th>
-                                            <th scope="col">Name</th>
-                                            <th scope="col">City Name</th>
+                                            <th scope="col">User Name</th>
+                                            <th scope="col">Space Name</th>
                                             <th scope="col">Created At</th>
                                             <th scope="col">State</th>
                                             <th scope="col">Actions</th>
@@ -35,23 +35,24 @@
                                     </thead>
                                     <tbody>
 
-
-
                                         @foreach ($bookings as  $booking)
 
                                         <tr>
                                             <td class="fw-medium">{{ $booking->id }}</td>
-                                            <td>{{ $booking->name }}</td>
-                                            <td></td>
+                                            <td>{{ $booking->user->name }}</td>
+                                            <td>{{ $booking->space->name }}</td>
 
-                                            <td>{{ $booking->created_at }}</td>
-                                            <td><span class="badge badge-soft-success"></span></td>
+                                            <td>{{ $booking->created_at->diffForHumans()}}</td>
+                                            <td>{{ $booking->status }}</td>
 
 
 
                                             <td>
-                                                <a href="" class="btn btn-primary btn-sm">
+                                                {{-- <a href="" class="btn btn-primary btn-sm">
                                                     <i class="fas fa-edit"></i>
+                                                </a> --}}
+                                                <a href="{{ route('admin.requests.details',$booking->id) }}" class="btn btn-success btn-sm">
+                                                    <i class="fas fa-eye"></i>
                                                 </a>
 
                                                 {{-- <form action="{{ route('places.destroy', $place->id) }}" method="POST" style="display: inline-block;">

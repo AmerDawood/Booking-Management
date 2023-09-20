@@ -30,5 +30,10 @@ class Space extends Model
         return $this->belongsTo(Place::class, 'place_id');
     }
 
+    public function bookings()
+{
+    return $this->hasMany(Booking::class);
+}
+
 
 }
