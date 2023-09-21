@@ -1,9 +1,17 @@
-import Echo from 'laravel-echo';
+// import './bootstrap';
+
+// Echo.private('admin-notification' + userId)
+//     .notification((notification) => {
+
+//         console.log('send notify success');
+//         toastr.success(notification.data)
+
+// });
+
+
 import './bootstrap';
 
-
-
-window.Echo.private('admin-notification')
-   .listen('.classwork-created', function(event) {
-      alert(event.title);
-   });
+Echo.private('App.Models.User.' + userId)
+    .notification((notification) => {
+        toastr.success(notification.data)
+    });

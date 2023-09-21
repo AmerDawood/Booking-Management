@@ -12,6 +12,7 @@ class TestNotification extends Notification
 {
     use Queueable;
 
+    
     public $booking;
 
     /**

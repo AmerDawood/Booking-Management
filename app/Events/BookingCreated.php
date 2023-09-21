@@ -9,6 +9,7 @@ use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Log;
 
 class BookingCreated
 {
@@ -25,6 +26,9 @@ class BookingCreated
     public function __construct($booking)
     {
         $this->booking = $booking;
+
+        Log::info('BookingCreated event triggered');
+
     }
 
     /**

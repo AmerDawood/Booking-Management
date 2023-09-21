@@ -6,7 +6,7 @@ use App\Events\BookingMade;
 use App\Models\Admin;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use App\Notifications\NewBooking;
-
+use App\Notifications\TestNotification;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Notification;
 
@@ -35,7 +35,7 @@ class SendBookingNotificationToAdmins
             // }
 
 
-            Notification::send($admins,new NewBooking($event->booking));
+            Notification::send($admins,new TestNotification($event->booking));
 
 
     }

@@ -42,6 +42,8 @@ Route::middleware(['auth.user_or_admin'])->group(function(){
     // Route::middleware('admin')->group(function(){
         Route::get('/dashboard' , [DashboardController::class,'index'])->name('dashboard.index');
 
+
+
     });
 
 
@@ -69,10 +71,21 @@ Route::middleware(['auth.user_or_admin'])->group(function(){
 
         Route::get('/search', [AdminController::class,'search'])->name('search');
 
+
     });
 
 
+
     Route::middleware('auth')->group(function(){
+
+
+
+
+
+        Route::get('/admin/notification', function () {
+            return view('dashboard.test-notify');
+        });
+
 
         Route::get('available/spaces', [UserController::class ,'index'])->name('available.spaces');
 
@@ -128,6 +141,10 @@ Route::get('/send-email', [UserController::class, 'sendEmail']);
 Route::get('/test-chart',function(){
     return view('test_chart');
 });
+
+
+
+
 
 include 'test.php';
 

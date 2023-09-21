@@ -1,5 +1,6 @@
 <?php
 
+use App\Events\BookingCreated;
 use App\Models\Booking;
 use App\Models\Order;
 use App\Models\User;
@@ -8,40 +9,25 @@ use App\Notifications\TestNotification;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-// Route::get('testtest', function() {
 
-//         $notification_channel = 'mail';
-//         $channels = explode(',', $notification_channel);
-//         dd($channels);
-// });
 
-// Dont Do This Just For Test Only
-// Route::get('send-notification', function() {
 
-//     // $user = Auth::user();
 
-//     // Mail::to($user->email)->send( new InvoiceMail() );
+// Route::get('send-notify', function() {
 
-//     // $user->notify(new NewOrderNotification());
+//     $order = Booking::find(2);
+
+//     event(new BookingCreated($order));
 
 // });
-
-
-// Route::get('invoice', function() {
-//     // return view('pdf.invoice');
-//     $order = Order::find(2);
-//     $pdf = Pdf::loadView('pdf.invoice', ['order' =>  $order]);
-//     $pdf->save('invoices/latest.pdf');
-// });
-
 
 Route::get('send-notify', function() {
     $user = Auth::user();
-    $order = Booking::find(23);
+    $order = Booking::find(2);
     $user->notify(new TestNotification($order));
-
-    // return redirect()->back();
 });
+
+
 
 
 Route::get('read-notify', function() {
