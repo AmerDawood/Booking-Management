@@ -47,6 +47,7 @@ Route::middleware(['auth.user_or_admin'])->group(function(){
     });
 
 
+
     Route::middleware('admin')->group(function(){
 
         Route::resource('spaces' , SpacesController::class);
@@ -72,6 +73,12 @@ Route::middleware(['auth.user_or_admin'])->group(function(){
         Route::get('/search', [AdminController::class,'search'])->name('search');
 
 
+
+        Route::get('/admin/notification', function () {
+            return view('dashboard.test-notify');
+        });
+
+
     });
 
 
@@ -79,12 +86,6 @@ Route::middleware(['auth.user_or_admin'])->group(function(){
     Route::middleware('auth')->group(function(){
 
 
-
-
-
-        Route::get('/admin/notification', function () {
-            return view('dashboard.test-notify');
-        });
 
 
         Route::get('available/spaces', [UserController::class ,'index'])->name('available.spaces');

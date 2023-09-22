@@ -15,13 +15,27 @@ use Illuminate\Support\Facades\Broadcast;
 */
 
 
+Broadcast::routes(['middleware' => ['auth:admin']]);
+
+// Broadcast::channel('admin-notification', function ($user) {
+//     // Authorization logic here
+//     return true; // Replace with your authorization logic
+// });
 
 
-
-
-Broadcast::channel('App.Models.User.{id}', function ($user, $id) {
-    return (int) $user->id === (int) $id;
+Broadcast::channel('App.Models.Admin.{id}', function ($user, $id) {
+    // return (int) $user->id === (int) $id;
+    return true;
 });
+
+
+// Broadcast::channel('admin-notification', function ($user, $id) {
+//     // return (int) $user->id === (int) $id;
+//     return true;
+// });
+
+
+
 
 // Broadcast::channel('admin-notifications', function ($user) {
 //     // Check if the user is an admin

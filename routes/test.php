@@ -1,30 +1,48 @@
 <?php
 
 use App\Events\BookingCreated;
+use App\Models\Admin;
 use App\Models\Booking;
 use App\Models\Order;
 use App\Models\User;
 use App\Notifications\NewOrder;
 use App\Notifications\TestNotification;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Broadcast;
 use Illuminate\Support\Facades\Route;
 
 
 
 
 
+
+
 // Route::get('send-notify', function() {
-
+//     $user = Auth::user();
 //     $order = Booking::find(2);
+//     $user->notify(new TestNotification($order));
+// });
+// Route::get('send-notify', function () {
 
-//     event(new BookingCreated($order));
+
+//     // event(new BookingCreated());
+
+//     $booking = Booking::find(1);
+
+//     event(new BookingCreated($booking));
+
 
 // });
 
+
 Route::get('send-notify', function() {
-    $user = Auth::user();
+    // $user = Auth::user();
+    $admins = Admin::all();
     $order = Booking::find(2);
-    $user->notify(new TestNotification($order));
+    foreach($admins as $admin){
+    $admin->notify(new TestNotification($order));
+
+    }
 });
 
 

@@ -2,6 +2,7 @@
 
 namespace App\Listeners;
 
+use App\Events\BookingCreated;
 use App\Events\BookingMade;
 use App\Models\Admin;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -23,7 +24,7 @@ class SendBookingNotificationToAdmins
     /**
      * Handle the event.
      */
-    public function handle(BookingMade $event): void
+    public function handle(BookingCreated $event): void
     {
             // Get all admin users who should receive the notification
             $admins = Admin::all();
