@@ -11,6 +11,8 @@
         "vite": "^4.0.0"
     },
     "dependencies": {
+        "@fullcalendar/core": "^6.1.9",
+        "@fullcalendar/daygrid": "^6.1.9",
         "laravel-echo": "^1.15.3",
         "lodash": "^4.17.21",
         "pusher-js": "^8.3.0"

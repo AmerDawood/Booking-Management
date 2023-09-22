@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\CalendarController;
+use App\Http\Controllers\Admin\FullCalenderController;
 use App\Http\Controllers\Auth\AdminAuthController;
 use App\Http\Controllers\Auth\UserAuthController;
 use App\Http\Controllers\Dashboard\AmenitiesController;
@@ -79,6 +81,12 @@ Route::middleware(['auth.user_or_admin'])->group(function(){
         });
 
 
+
+        // Route::get('/calender',[CalendarController::class,'getEvent'])->name('getEvent');
+
+        Route::get('/getevent', [FullCalenderController::class,'getEvent'])->name('getevent');
+        Route::post('/createevent',[FullCalenderController::class,'createEvent'])->name('createevent');
+        Route::post('/deleteevent',[FullCalenderController::class,'deleteEvent'])->name('deleteevent');
     });
 
 

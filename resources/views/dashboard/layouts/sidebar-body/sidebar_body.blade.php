@@ -161,6 +161,22 @@
 </li>
 
 
+
+<a href="{{ route('getevent') }}">
+<li class="nav-item">
+    <a class="nav-link menu-link" href="{{ route('getevent') }}" data-bs-toggle="collapse role="button aria-expanded="false" aria-controls="sidebarPages">
+
+
+            <i class="mdi mdi-sticker-text-outline"></i> <span data-key="t-pages">Calender</span>
+
+
+    </a>
+
+</li>
+
+</a>
+
+
 <li class="nav-item">
     <a class="nav-link menu-link" href="#sidebarBooking" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarBooking">
         <i class="mdi mdi-cube-outline"></i> <span data-key="t-base-ui">Booking Request</span>
