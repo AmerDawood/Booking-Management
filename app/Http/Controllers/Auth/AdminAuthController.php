@@ -46,35 +46,10 @@ class AdminAuthController extends Controller
 
 
 
-    // public function register(Request $request){
 
 
-    //     $validator = Validator::make($request->all(), [
-    //         'name' => 'required',
-    //         'email' => 'required|email|unique:admins',
-    //         'password' => 'required|min:6|confirmed',
-    //     ]);
 
-    //     if ($validator->fails()) {
-
-    //         return redirect()->route('admin.register.form')
-    //         ->withErrors($validator)
-    //         ->withInput();
-    //     }
-
-    //     $admin = Admin::create([
-    //         'name' => $request->input('name'),
-    //         'email' => $request->input('email'),
-    //         'password' => bcrypt($request->input('password')),
-    //     ]);
-
-
-    //     // toastr()->success('Admin Created Successfuly');
-
-    //     return redirect()->route('admin.login.form');
-
-    // }
-
+  
 
 
 

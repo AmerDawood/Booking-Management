@@ -17,6 +17,7 @@ class Admin extends Authenticatable
         'email',
         'password',
         'type',
+        'position_name',
     ];
 
     /**
@@ -40,5 +41,5 @@ class Admin extends Authenticatable
     ];
 
 
-    
+
 }

@@ -28,14 +28,11 @@
                                         <div class="flex-grow-1 overflow-hidden">
                                             <p class="text-uppercase fw-medium text-muted text-truncate mb-0"> Total Spaces</p>
                                         </div>
-                                        <div class="flex-shrink-0">
-
-                                        </div>
                                     </div>
                                     <div class="d-flex align-items-end justify-content-between mt-4">
                                         <div>
-                                            <h4 class="fs-22 fw-semibold ff-secondary mb-4"><span class="counter-value" data-target=""></span> </h4>
-                                            <a href="" class="text-decoration-underline">View all spaces</a>
+                                            <h4 class="fs-22 fw-semibold ff-secondary mb-4"><span class="counter-value" data-target="{{ $spacesCount }}">0</span> </h4>
+                                            <a href="{{ route('spaces.index') }}" class="text-decoration-underline">View all spaces</a>
                                         </div>
                                         <div class="avatar-sm flex-shrink-0">
                                             <span class="avatar-title bg-success rounded fs-3">
@@ -59,8 +56,8 @@
                                     </div>
                                     <div class="d-flex align-items-end justify-content-between mt-4">
                                         <div>
-                                            <h4 class="fs-22 fw-semibold ff-secondary mb-4"><span class="counter-value" data-target=""></span></h4>
-                                            <a href="" class="text-decoration-underline">View all users</a>
+                                            <h4 class="fs-22 fw-semibold ff-secondary mb-4"><span class="counter-value" data-target="{{ $usersCount }}">0</span></h4>
+                                            <a href="{{ route('users.all') }}" class="text-decoration-underline">View all users</a>
                                         </div>
                                         <div class="avatar-sm flex-shrink-0">
                                             <span class="avatar-title bg-info rounded fs-3">
@@ -84,8 +81,8 @@
                                     </div>
                                     <div class="d-flex align-items-end justify-content-between mt-4">
                                         <div>
-                                            <h4 class="fs-22 fw-semibold ff-secondary mb-4"><span class="counter-value" data-target=""></span></h4>
-                                            <a href="" class="text-decoration-underline">View all admins</a>
+                                            <h4 class="fs-22 fw-semibold ff-secondary mb-4"><span class="counter-value" data-target="{{ $adminsCount }}">0</span></h4>
+                                            <a href="{{ route('admins.all') }}" class="text-decoration-underline">View all admins</a>
                                         </div>
                                         <div class="avatar-sm flex-shrink-0">
                                             <span class="avatar-title bg-info rounded fs-3">
@@ -109,8 +106,8 @@
                                     </div>
                                     <div class="d-flex align-items-end justify-content-between mt-4">
                                         <div>
-                                            <h4 class="fs-22 fw-semibold ff-secondary mb-4"><span class="counter-value" data-target=""></span></h4>
-                                            <a href="" class="text-decoration-underline">View all aminty</a>
+                                            <h4 class="fs-22 fw-semibold ff-secondary mb-4"><span class="counter-value" data-target="{{ $amenityCount }}">0</span></h4>
+                                            <a href="{{ route('amenities.index') }}" class="text-decoration-underline">View all aminty</a>
                                         </div>
                                         <div class="avatar-sm flex-shrink-0">
                                             <span class="avatar-title bg-info rounded fs-3">
@@ -128,24 +125,40 @@
                         <div class="col-xl-6">
                             <div class="card">
                                 <div class="card-header">
+                                    <h4 class="card-title mb-0">Bookings Status</h4>
+                                </div>
+                                <div class="card-body">
+                                    <canvas id="bar" class="chartjs-chart" width="400" height="200"></canvas>
+                                </div>
+                            </div>
+                            {{-- <div class="card">
+                                <div class="card-header">
                                     <h4 class="card-title mb-0">Bar Chart</h4>
                                 </div>
                                 <div class="card-body">
                                     <canvas id="bar" class="chartjs-chart" data-colors="[&quot;--vz-primary-rgb, 0.8&quot;, &quot;--vz-primary-rgb, 0.9&quot;]" width="1054" height="526" style="display: block; box-sizing: border-box; height: 263px; width: 527px;"></canvas>
 
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
 
                         <div class="col-xl-6">
                             <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title mb-0">Users Status</h4>
+                                </div>
+                                <div class="card-body">
+                                    <canvas id="donutChart" class="chartjs-chart" width="400" height="200"></canvas>
+                                </div>
+                            </div>
+                            {{-- <div class="card">
                                 <div class="card-header">
                                     <h4 class="card-title mb-0">Donut Chart</h4>
                                 </div>
                                 <div class="card-body">
                                     <canvas id="doughnut" class="chartjs-chart" data-colors="[&quot;--vz-primary&quot;, &quot;--vz-light&quot;]" width="1054" height="640" style="display: block; box-sizing: border-box; height: 320px; width: 527px;"></canvas>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
 
@@ -170,45 +183,44 @@
                                             <thead class="text-muted table-light">
                                                 <tr>
                                                     <th scope="col">id</th>
-                                                    <th scope="col">name</th>
-                                                    <th scope="col">Image</th>
+                                                    <th scope="col">Space Name</th>
+                                                    <th scope="col">User Name</th>
                                                     <th scope="col">Created At</th>
 
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                {{-- @foreach ($projects as $project )
+                                              @foreach ($bookings as $booking )
 
                                                 <tr>
                                                     <td>
                                                         <a href="apps-ecommerce-order-details.html"
-                                                            class="fw-medium link-primary">{{ $project->id }}</a>
+                                                            class="fw-medium link-primary">{{ $booking->id }}</a>
                                                     </td>
                                                     <td>
                                                         <div class="d-flex align-items-center">
 
-                                                            <div class="flex-grow-1">{{ $project->name }}</div>
+                                                            <div class="flex-grow-1">{{ $booking->space->name }}</div>
+                                                        </div>
+                                                    </td>
+
+                                                    <td>
+                                                        <div class="d-flex align-items-center">
+                                                            <div class="flex-grow-1">{{ $booking->user->name }}</div>
                                                         </div>
                                                     </td>
 
                                                     <td>
                                                         <div class="d-flex align-items-center">
 
-                                                            <div class="flex-grow-1"><img src="{{ asset('uploads/projects/'.$project->image) }}" height="80"></div>
-                                                        </div>
-                                                    </td>
-
-                                                    <td>
-                                                        <div class="d-flex align-items-center">
-
-                                                            <div class="flex-grow-1">{{ $project->created_at->diffForHumans() }}</div>
+                                                            <div class="flex-grow-1">{{ $booking->created_at->diffForHumans() }}</div>
                                                         </div>
                                                     </td>
 
                                                 </tr><!-- end tr -->
 
                                                 @endforeach
-                                                           --}}
+
                                             </tbody><!-- end tbody -->
                                         </table><!-- end table -->
                                     </div>

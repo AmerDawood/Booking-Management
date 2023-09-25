@@ -100,21 +100,28 @@
 
                                       <!-- Accept and Reject buttons in the same form, horizontally aligned -->
                                   <!-- Single form with Accept and Reject buttons -->
-                                  <form method="post" action="{{ route('bookings.updateStatus', ['id' => $booking->id, 'status' => 'approved']) }}" class="form-inline">
-                                    @csrf
-                                    @method('PUT')
+                                  <div class="row">
+                                    <div class="col-md-3">
+                                        <form method="post" action="{{ route('bookings.updateStatus', ['id' => $booking->id, 'status' => 'approved']) }}" class="form-inline">
+                                            @csrf
+                                            @method('PUT')
 
-                                    <!-- Accept button -->
-                                    <button type="submit" class="btn btn-success mr-2">Accept</button>
-                                </form>
+                                            <!-- Accept button -->
+                                            <button type="submit" class="btn btn-success">Accept</button>
+                                        </form>
+                                    </div>
 
-                                <form method="post" action="{{ route('bookings.updateStatus', ['id' => $booking->id, 'status' => 'rejected']) }}" class="form-inline">
-                                    @csrf
-                                    @method('PUT')
+                                    <div class="col-md-3">
+                                        <form method="post" action="{{ route('bookings.updateStatus', ['id' => $booking->id, 'status' => 'rejected']) }}" class="form-inline">
+                                            @csrf
+                                            @method('PUT')
 
-                                    <!-- Reject button -->
-                                    <button type="submit" class="btn btn-danger">Reject</button>
-                                </form>
+                                            <!-- Reject button -->
+                                            <button type="submit" class="btn btn-danger">Reject</button>
+                                        </form>
+                                    </div>
+                                </div>
+
 
 
 
@@ -207,6 +214,8 @@
                                     </div>
                                 </div>
                                 <!-- product-content -->
+
+
 
                                 <!-- end card body -->
                             </div>

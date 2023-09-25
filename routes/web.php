@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\CalendarController;
 use App\Http\Controllers\Admin\FullCalenderController;
 use App\Http\Controllers\Auth\AdminAuthController;
 use App\Http\Controllers\Auth\UserAuthController;
+use App\Http\Controllers\ChartController;
 use App\Http\Controllers\Dashboard\AmenitiesController;
 use App\Http\Controllers\Dashboard\BookingController;
 use App\Http\Controllers\Dashboard\BookingRequestCobtroller;
@@ -52,6 +53,10 @@ Route::middleware(['auth.user_or_admin'])->group(function(){
 
     Route::middleware('admin')->group(function(){
 
+        Route::get('admin/create',[AdminController::class,'createAdmin'])->name('create.admin');
+        Route::post('admin/store',[AdminController::class,'storeAdmin'])->name('store.admin');
+
+
         Route::resource('spaces' , SpacesController::class);
         Route::resource('places' , PlaceController::class);
         Route::resource('amenities' , AmenitiesController::class);
@@ -68,6 +73,9 @@ Route::middleware(['auth.user_or_admin'])->group(function(){
         Route::get('/all-booking-request',[BookingRequestCobtroller::class,'index'])->name('requests.index');
         Route::get('/booking-request/details/{id}',[BookingRequestCobtroller::class,'details'])->name('admin.requests.details');
         Route::put('/bookings/{id}/update-status/{status}', [BookingRequestCobtroller::class,'updateBookingStatus'])->name('bookings.updateStatus');
+        Route::get('/rejicted-booking-request',[BookingRequestCobtroller::class,'rejictedBookingRequest'])->name('rejicted.booking.request');
+
+
 
 
         // Route::get('/booking-request',[BookingRequestCobtroller::class,'index'])->name('requests.index');
@@ -145,6 +153,9 @@ Route::post('admin/logout',[AdminAuthController::class,'logout'])->name('logout.
 
 Route::get('/send-email', [UserController::class, 'sendEmail']);
 
+
+Route::get('/getChartData', [ChartController::class, 'getChartData'])->name('getChartData');
+Route::get('/getDonutChartData', [ChartController::class, 'getDonutChartData'])->name('getDonutChartData');
 
 
 Route::get('/test-chart',function(){

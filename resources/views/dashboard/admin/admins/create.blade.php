@@ -27,7 +27,7 @@
                     </div><!-- end card header -->
                     <div class="card-body">
                         <div class="live-preview">
-                            <form action="{{ route('users.store') }}" class="row g-3" method="POST">
+                            <form action="{{ route('store.admin') }}" class="row g-3" method="POST">
                                 @csrf
                                 <div class="col-md-12">
                                     <label for="fullnameInput" class="form-label">Name</label>
@@ -38,8 +38,8 @@
                                     <input type="email" name="email" class="form-control" id="inputEmail4" placeholder="Email">
                                 </div>
                                 <div class="col-6">
-                                    <label for="inputAddress" class="form-label">Course Title</label>
-                                    <input type="text" class="form-control" name="course_name" id="inputAddress" placeholder="1234 Main St">
+                                    <label for="inputAddress" class="form-label">Postition Name</label>
+                                    <input type="text" class="form-control" name="position_name" id="inputAddress" placeholder="1234 Main St">
                                 </div>
                                 <div class="col-md-12">
                                     <label for="inputPassword4" class="form-label">Password</label>
@@ -54,7 +54,7 @@
 
                                 <div class="col-12">
                                     <div class="text-end">
-                                        <button type="submit" class="btn btn-primary">Create User</button>
+                                        <button type="submit" class="btn btn-primary">Create Admin</button>
                                     </div>
                                 </div>
                             </form>

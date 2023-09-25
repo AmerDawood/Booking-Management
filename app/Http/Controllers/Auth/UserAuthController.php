@@ -53,12 +53,14 @@ class UserAuthController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
+            'course_name' => 'required|string'
         ]);
 
         User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => bcrypt($request->password),
+            'course_name' => $request->course_name,
         ]);
 
         return redirect()->route('login.user')->with('success', 'Registration successful! You can now log in.');
@@ -72,4 +74,7 @@ class UserAuthController extends Controller
 
         return redirect()->route('website')->with('success', 'You have been logged out.');
     }
+
+
+
 }

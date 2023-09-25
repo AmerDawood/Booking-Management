@@ -189,7 +189,7 @@
                         <a href="{{ route('requests.index') }}" class="nav-link" data-key="t-alerts">All Booking Request</a>
                     </li>
                     <li class="nav-item">
-                        <a href="" class="nav-link" data-key="t-badges">Deleted Booking Request</a>
+                        <a href="{{ route('rejicted.booking.request') }}" class="nav-link" data-key="t-badges">Rejicted Booking Request</a>
                     </li>
                 </ul>
             </div>
@@ -230,7 +230,7 @@
                         <a href="{{ route('admins.all') }}" class="nav-link" data-key="t-alerts">All Admins</a>
                     </li>
                     <li class="nav-item">
-                        <a href="" class="nav-link" data-key="t-badges">Add Admin</a>
+                        <a href="{{ route('create.admin') }}" class="nav-link" data-key="t-badges">Add Admin</a>
                     </li>
                 </ul>
             </div>

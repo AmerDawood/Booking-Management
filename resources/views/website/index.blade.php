@@ -48,7 +48,7 @@
             <!-- end navbar -->
 
             <!-- start hero section -->
-            <section class="section job-hero-section bg-light pb-0" id="hero">
+            {{-- <section class="section job-hero-section bg-light pb-0" id="hero">
                 <div class="container">
                     <div class="row justify-content-between align-items-center">
                         <div class="col-lg-6">
@@ -163,7 +163,7 @@
                     <!-- end row -->
                 </div>
                 <!-- end container -->
-            </section>
+            </section> --}}
             <!-- end hero section -->
 
             <section class="section" id="process">

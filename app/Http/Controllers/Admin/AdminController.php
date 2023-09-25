@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Admin;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class AdminController extends Controller
 {
@@ -66,10 +67,42 @@ class AdminController extends Controller
         public function createAdmin()
         {
 
+
+            return view('dashboard.admin.admins.create');
+
+
+
         }
 
-        public function storeAdmin ()
+        public function storeAdmin (Request $request)
         {
+
+
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'email' => 'required|email|unique:admins',
+            'password' => 'required|min:6|confirmed',
+            'position_name' =>'required|string',
+        ]);
+
+        if ($validator->fails()) {
+
+            return redirect()->route('admins.all')
+            ->withErrors($validator)
+            ->withInput();
+        }
+
+        $admin = Admin::create([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'password' => bcrypt($request->input('password')),
+            'position_name' => $request->input('position_name'),
+        ]);
+
+
+        // toastr()->success('Admin Created Successfuly');
+
+        return redirect()->route('admins.all');
 
         }
 

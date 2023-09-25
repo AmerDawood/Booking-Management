@@ -64,6 +64,15 @@
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
                                             </div>
+
+
+                                            <div class="mb-3">
+                                                <label for="username" class="form-label">Course Name</label>
+                                                <input type="text" class="form-control  @error('course_name') is-invalid @enderror" id="course_name" placeholder="Enter Course Name" name="course_name" value="{{ old('course_name') }}">
+                                                @error('course_name')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
+                                            </div>
                                             <div class="mb-3">
                                                 <label class="form-label" for="password-input">Password</label>
                                                 <div class="position-relative auth-pass-inputgroup mb-3">

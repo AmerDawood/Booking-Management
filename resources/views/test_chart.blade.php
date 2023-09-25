@@ -32,19 +32,25 @@
             </div>
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <script>
+
         // Function to fetch and display data for the bar chart
         function fetchAndDisplayBarChartData() {
             $.ajax({
                 url: "{{ route('getChartData') }}", // Replace with the actual route name
                 type: 'GET',
                 dataType: 'json',
+                headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
                 success: function (data) {
-                    // Update the bar chart data with the retrieved data
-                    barChart.data.labels = data.labels;
-                    barChart.data.datasets[0].data = data.values;
-                    barChart.update(); // Update the chart to reflect the changes
-                },
+                        // Update the bar chart data with the retrieved data
+                        barChart.data.labels = data.labels;
+                        barChart.data.datasets[0].data = data.values;
+                        barChart.update(); // Update the chart to reflect the changes
+                    },
                 error: function () {
                     alert('Error fetching data for the bar chart.');
                 }
@@ -94,6 +100,42 @@
         fetchAndDisplayBarChartData();
     </script>
 
+
+<script>
+    // Function to fetch and display data for the donut chart
+function fetchAndDisplayDonutChartData() {
+    $.ajax({
+        url: "{{ route('getDonutChartData') }}", // Use the actual route name
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+            // Create the donut chart
+            var donutCtx = document.getElementById('donutChart').getContext('2d');
+            var donutChart = new Chart(donutCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: data.labels,
+                    datasets: [{
+                        data: data.values,
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.5)',
+                            'rgba(54, 162, 235, 0.5)',
+                            'rgba(255, 206, 86, 0.5)',
+                        ],
+                    }],
+                },
+            });
+        },
+        error: function () {
+            alert('Error fetching data for the donut chart.');
+        }
+    });
+}
+
+// Fetch and display data for the donut chart on page load
+fetchAndDisplayDonutChartData();
+
+</script>
 
     {{-- <script>
         // Bar Chart Data (Replace with your actual data)
