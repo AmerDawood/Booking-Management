@@ -46,6 +46,10 @@ class User extends Authenticatable
     ];
 
 
+    public function isUserModel()
+    {
+        return $this instanceof User;
+    }
 
 
     public function bookings()

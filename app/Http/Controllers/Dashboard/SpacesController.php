@@ -182,4 +182,25 @@ class SpacesController extends Controller
 
         return redirect()->route('spaces.index')->with('success', 'Space and image deleted successfully');
     }
+
+
+
+
+    public function updateStatus(Request $request, $id)
+    {
+        try {
+            $space = Space::findOrFail($id);
+            // Update the space status to 1 (available)
+            $space->is_available = 1;
+            $space->save();
+
+            return redirect()->back()->with('msg', 'Space status updated successfully');
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            // Handle the case where the space with the given ID is not found
+            return redirect()->back()->with('error', 'Space not found')->withInput();
+        } catch (\Exception $e) {
+            // Handle other exceptions or errors
+            return redirect()->back()->with('error', 'An error occurred')->withInput();
+        }
+    }
 }

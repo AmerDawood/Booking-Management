@@ -15,9 +15,6 @@
         <div class="container-fluid">
             <div class="row">
 
-
-
-
     <!-- start page title -->
     <div class="row">
         <div class="col-12">
@@ -109,27 +106,63 @@
                                         <h4>{{ $space->name }}</h4>
 
 
-                                        <div class="live-preview">
-                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalgrid">
-                                                Make A Request Now
-                                            </button>
-                                            <div class="modal fade" id="exampleModalgrid" tabindex="-1" aria-labelledby="exampleModalgridLabel">
-                                                <div class="modal-dialog">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title" id="exampleModalgridLabel">Grid Modals</h5>
-                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <form action="{{ route('booking.store') }}" method="POST">
-                                                                @csrf
-                                                                @include('dashboard.user.booking._form')
-                                                            </form>
+
+
+
+
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="live-preview">
+                                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalgrid">
+                                                        Make A Request Now
+                                                    </button>
+                                                    <div class="modal fade" id="exampleModalgrid" tabindex="-1" aria-labelledby="exampleModalgridLabel">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="exampleModalgridLabel">Grid Modals</h5>
+                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <form action="{{ route('booking.store') }}" method="POST">
+                                                                        @csrf
+                                                                        @include('dashboard.user.booking._form')
+                                                                    </form>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
+
+
+                                            <div class="col">
+                                                <div class="live-preview">
+                                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addReviewModal">
+                                                        Add A Review Now
+                                                    </button>
+                                                    <div class="modal fade" id="addReviewModal" tabindex="-1" aria-labelledby="addReviewModalLabel">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="addReviewModalLabel">Add Review</h5>
+                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <form action="{{ route('reviews.store') }}" method="POST">
+                                                                        @csrf
+                                                                        @include('dashboard.user.booking._form_review')
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
                                         </div>
+
+
 
                                     </div>
                                     {{-- <div class="flex-shrink-0">

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Models\Booking;
 use App\Models\Event;
+use App\Models\Space;
 use Illuminate\Http\Request;
 
 class BookingRequestCobtroller extends Controller
@@ -14,6 +15,15 @@ class BookingRequestCobtroller extends Controller
     {
         $bookings = Booking::orderByDesc('id')->where('status','pending')->paginate(6);
         return view('dashboard.admin.booking_request.index',[
+            'bookings' => $bookings,
+        ]);
+    }
+
+
+    public function approved()
+    {
+        $bookings = Booking::orderByDesc('id')->where('status','approved')->paginate(6);
+        return view('dashboard.admin.booking_request.approved',[
             'bookings' => $bookings,
         ]);
     }
@@ -51,6 +61,8 @@ class BookingRequestCobtroller extends Controller
     //         return abort(404);
     //     }
     // }
+
+
 
 
 public function updateBookingStatus($id, $status)

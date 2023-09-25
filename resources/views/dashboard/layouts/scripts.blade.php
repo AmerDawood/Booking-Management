@@ -147,6 +147,38 @@
     });
 </script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/6.2.0/tinymce.min.js" integrity="sha512-tofxIFo8lTkPN/ggZgV89daDZkgh1DunsMYBq41usfs3HbxMRVHWFAjSi/MXrT+Vw5XElng9vAfMmOWdLg0YbA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+ <script>
+     tinymce.init({
+         selector: '.myeditor',
+
+         directionality: 'ltr'
+     })
+ </script>
+<script>
+    const stars = document.querySelectorAll(".star-rating .fa-star");
+    const ratingInput = document.getElementById("rating");
+
+    stars.forEach((star) => {
+        star.addEventListener("click", () => {
+            const rating = parseInt(star.getAttribute("data-rating"));
+            ratingInput.value = rating;
+
+            // Update star styles based on selected rating
+            stars.forEach((s, index) => {
+                if (index < rating) {
+                    s.classList.add("fas");
+                    s.classList.remove("far");
+                } else {
+                    s.classList.remove("fas");
+                    s.classList.add("far");
+                }
+            });
+        });
+    });
+</script>
+
+
 
     @yield('scripts')
 @else
@@ -220,6 +252,40 @@
         });
     });
 </script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/6.2.0/tinymce.min.js" integrity="sha512-tofxIFo8lTkPN/ggZgV89daDZkgh1DunsMYBq41usfs3HbxMRVHWFAjSi/MXrT+Vw5XElng9vAfMmOWdLg0YbA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+ <script>
+     tinymce.init({
+         selector: '.myeditor',
+
+         directionality: 'rtl'
+     })
+ </script>
+
+<script>
+    const stars = document.querySelectorAll(".star-rating .fa-star");
+    const ratingInput = document.getElementById("rating");
+
+    stars.forEach((star) => {
+        star.addEventListener("click", () => {
+            const rating = parseInt(star.getAttribute("data-rating"));
+            ratingInput.value = rating;
+
+            // Update star styles based on selected rating
+            stars.forEach((s, index) => {
+                if (index < rating) {
+                    s.classList.add("fas");
+                    s.classList.remove("far");
+                } else {
+                    s.classList.remove("fas");
+                    s.classList.add("far");
+                }
+            });
+        });
+    });
+</script>
+
+
 
 @yield('scripts')
 

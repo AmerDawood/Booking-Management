@@ -186,6 +186,9 @@
             <div class="col-lg-4">
                 <ul class="nav nav-sm flex-column">
                     <li class="nav-item">
+                        <a href="{{ route('approved.booking.request') }}" class="nav-link" data-key="t-alerts">Approved Request</a>
+                    </li>
+                    <li class="nav-item">
                         <a href="{{ route('requests.index') }}" class="nav-link" data-key="t-alerts">All Booking Request</a>
                     </li>
                     <li class="nav-item">
@@ -248,11 +251,11 @@
             <div class="col-lg-4">
                 <ul class="nav nav-sm flex-column">
                     <li class="nav-item">
-                        <a href="" class="nav-link" data-key="t-alerts">Privacy & Policy</a>
+                        <a href="{{ route('privacy.create') }}" class="nav-link" data-key="t-alerts">Privacy & Policy</a>
                     </li>
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a href="" class="nav-link" data-key="t-badges">FAQs</a>
-                    </li>
+                    </li> --}}
                 </ul>
             </div>
         </div>

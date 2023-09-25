@@ -129,9 +129,9 @@
                     <!-- Search input -->
 
                     <!-- Modal trigger (hidden by default) -->
-                    <a href="#" class="header-link" id="searchInputTrigger" data-bs-toggle="modal" data-bs-target="#searchModal">
+                    {{-- <a href="#" class="header-link" id="searchInputTrigger" data-bs-toggle="modal" data-bs-target="#searchModal">
                         <i class="bx bx-search-alt-2 header-link-icon"></i>
-                    </a>
+                    </a> --}}
                 </div>
 
                 <!-- App Search-->

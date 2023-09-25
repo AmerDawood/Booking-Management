@@ -18,17 +18,21 @@
                     <div class="card">
                         <img class="card-img-top img-fluid" src="{{ asset('uploads/spaces/'.$space->image_url) }}" alt="Card image cap" style="height: 250px;">
                         <div class="card-header">
-                            <h4 class="card-title mb-0">A day in the of a professional fashion designer</h4>
+                            <h4 class="card-title mb-0">{{ $space->name }}</h4>
                         </div>
                         <div class="card-body">
-                            <p class="card-text text-muted"> Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee.</p>
+                            <p class="card-text text-muted">{{ $space->description }}</p>
                         </div>
                         <div class="card-footer">
-                            <p class="card-text mb-0">
-                               <a href="{{ route('spaces.show',$space->id) }}">
-                                <button>Show</button>
-                               </a>
-                            </p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <a href="{{ route('spaces.show', $space->id) }}" class="btn btn-primary">Show</a>
+                                {{-- <form method="POST" action="{{ route('spaces.destroy', $space->id) }}">
+                                    @csrf
+                                    @method('DELETE') --}}
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                {{-- </form> --}}
+                            </div>
+
                         </div>
                     </div>
                 </div>

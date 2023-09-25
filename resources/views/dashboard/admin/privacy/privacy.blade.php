@@ -22,34 +22,24 @@
             <div class="col-xxl-12">
                 <div class="card">
                     <div class="card-header align-items-center d-flex">
-                        <h4 class="card-title mb-0 flex-grow-1">Create User</h4>
+                        <h4 class="card-title mb-0 flex-grow-1">Add Privacy And Policy</h4>
 
                     </div><!-- end card header -->
                     <div class="card-body">
                         <div class="live-preview">
-                            {{-- <form action="{{ route('store.admin') }}" class="row g-3" method="POST">
+                            <form action="{{ route('privacy.update') }}" class="row g-3" method="POST">
                                 @csrf
+                                @method('PUT')
                                 <div class="col-md-12">
-                                    <label for="fullnameInput" class="form-label">Name</label>
-                                    <input type="text" name="name" class="form-control" id="fullnameInput" placeholder="Enter your name">
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="inputEmail4" class="form-label">Email</label>
-                                    <input type="email" name="email" class="form-control" id="inputEmail4" placeholder="Email">
-                                </div>
-                                <div class="col-6">
-                                    <label for="inputAddress" class="form-label">Postition Name</label>
-                                    <input type="text" class="form-control" name="position_name" id="inputAddress" placeholder="1234 Main St">
-                                </div>
-                                <div class="col-md-12">
-                                    <label for="inputPassword4" class="form-label">Password</label>
-                                    <input type="password" name="password" class="form-control" id="inputPassword4" placeholder="Password">
+                                    <label for="fullnameInput" class="form-label">Title</label>
+                                    <input type="text" name="title" class="form-control" id="fullnameInput" placeholder="Enter privacy title" value="{{ $privacy->title }}">
                                 </div>
 
-                                <div class="col-md-12">
-                                    <label for="confirmPassword" class="form-label">Confirm Password</label>
-                                    <input type="password" name="password_confirmation" class="form-control" id="confirmPassword" placeholder="Confirm Password">
+                                <div class="mb-3" style="direction: rtl;">
+                                    <label> Content</label>
+                                    <textarea name="description" placeholder="Privacy Description" id="description" class="myeditor">{{ $privacy->description }}</textarea>
                                 </div>
+
 
 
                                 <div class="col-12">
@@ -57,7 +47,7 @@
                                         <button type="submit" class="btn btn-primary">Create Admin</button>
                                     </div>
                                 </div>
-                            </form> --}}
+                            </form>
 
                         </div>
 

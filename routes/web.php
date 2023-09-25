@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\CalendarController;
 use App\Http\Controllers\Admin\FullCalenderController;
+use App\Http\Controllers\Admin\PrivacyController;
 use App\Http\Controllers\Auth\AdminAuthController;
 use App\Http\Controllers\Auth\UserAuthController;
 use App\Http\Controllers\ChartController;
@@ -13,6 +14,7 @@ use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\PlaceController;
 use App\Http\Controllers\Dashboard\SpacesController;
 use App\Http\Controllers\Dashboard\UserController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\Website\WebsiteController;
 use App\Models\Booking;
 use App\Notifications\TestNotification;
@@ -53,6 +55,13 @@ Route::middleware(['auth.user_or_admin'])->group(function(){
 
     Route::middleware('admin')->group(function(){
 
+        Route::put('/spaces/{id}/updateStatus', [SpacesController::class, 'updateStatus'])->name('spaces.updateStatus');
+
+
+        Route::get('/privacy/create',[PrivacyController::class,'index'])->name('privacy.create');
+        Route::put('/privacy/update',[PrivacyController::class,'updateData'])->name('privacy.update');
+
+
         Route::get('admin/create',[AdminController::class,'createAdmin'])->name('create.admin');
         Route::post('admin/store',[AdminController::class,'storeAdmin'])->name('store.admin');
 
@@ -75,6 +84,7 @@ Route::middleware(['auth.user_or_admin'])->group(function(){
         Route::put('/bookings/{id}/update-status/{status}', [BookingRequestCobtroller::class,'updateBookingStatus'])->name('bookings.updateStatus');
         Route::get('/rejicted-booking-request',[BookingRequestCobtroller::class,'rejictedBookingRequest'])->name('rejicted.booking.request');
 
+        Route::get('/approved-booking-request',[BookingRequestCobtroller::class,'approved'])->name('approved.booking.request');
 
 
 
@@ -101,6 +111,7 @@ Route::middleware(['auth.user_or_admin'])->group(function(){
 
     Route::middleware('auth')->group(function(){
 
+        Route::post('/reviews/add', [ReviewController::class, 'store'])->name('reviews.store');
 
 
 

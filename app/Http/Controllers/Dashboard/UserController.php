@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Mail\EmailFromAdmin;
+use App\Models\Privacy;
 use App\Models\Space;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -23,7 +24,8 @@ class UserController extends Controller
 
     public function privacy ()
     {
-        return view('dashboard.user.privacy.index');
+        $privacy = Privacy::latest()->first();
+        return view('dashboard.user.privacy.index',compact('privacy'));
     }
 
 

@@ -23,17 +23,23 @@ class DashboardController extends Controller
         $adminsCount = Admin::count();
         $amenityCount = Amenity::count();
 
-
-
+        if(auth()->user() && auth()->user()->isUserModel()){
 
         $myBookingRequest = Booking::where('user_id',auth()->user()->id)->count();
         $myAcceptedBookingRequest = Booking::where('user_id',auth()->user()->id)->where('status','approved')->count();
         $myPendingBookingRequest = Booking::where('user_id',auth()->user()->id)->where('status','pending')->count();
 
-
-
-
         $myBookings = Booking::orderByDesc('id')->where('status','pending')->where('user_id',auth()->user()->id)->get();
+
+        } else {
+            $myBookingRequest = Booking::all();
+        $myAcceptedBookingRequest =  Booking::all();
+        $myPendingBookingRequest =  Booking::all();
+        $myBookings = Booking::all();
+        }
+
+
+
 
 
         $lastThreeSpaces = Space::orderByDesc('id')->take(3)->get();
